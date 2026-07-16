@@ -1,0 +1,32 @@
+name: clipnote-apple
+options:
+  bundleIdPrefix: com.clipnote
+  deploymentTarget:
+    iOS: "17.0"
+    macOS: "14.0"
+  createIntermediateGroups: true
+targets:
+  Clipnote:
+    type: application
+    supportedDestinations: [iOS, macOS]
+    sources:
+      - Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clipnote.app
+        PRODUCT_NAME: clipnote
+        GENERATE_INFOPLIST_FILE: YES
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 0.1.0
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_CFBundleDisplayName: clipnote
+schemes:
+  Clipnote:
+    build:
+      targets:
+        Clipnote: all
+    run:
+      config: Debug
