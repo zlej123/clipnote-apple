@@ -3120,22 +3120,23 @@ struct CapturePipelineTests {
         defer { try? FileManager.default.removeItem(at: root) }
         let model = makeModel(root: root)
         let result = try makeResult()
-        let guide = result.analysis.visualGuides[0]   // vg-1
+        let vg1 = result.analysis.visualGuides[0]   // vg-1
+        let vg2 = result.analysis.visualGuides[1]   // vg-2 — center 실패 케이스로 사용
         model.captures = [
-            GuideCapture(guide: guide, candidates: [
+            GuideCapture(guide: vg1, candidates: [
                 CaptureCandidate(slot: "before", time: 20, jpeg: jpeg),
                 CaptureCandidate(slot: "center", time: 30, jpeg: jpeg),
                 CaptureCandidate(slot: "after", time: 56, jpeg: jpeg),
             ]),
-            GuideCapture(guide: guide, candidates: [   // center 실패 케이스
-                CaptureCandidate(slot: "before", time: 20, jpeg: nil),
-                CaptureCandidate(slot: "center", time: 30, jpeg: nil),
-                CaptureCandidate(slot: "after", time: 56, jpeg: nil),
+            GuideCapture(guide: vg2, candidates: [
+                CaptureCandidate(slot: "before", time: 4, jpeg: nil),
+                CaptureCandidate(slot: "center", time: 10, jpeg: nil),
+                CaptureCandidate(slot: "after", time: 21, jpeg: nil),
             ]),
         ]
-        // 두 번째는 같은 guide id라 사전상 첫 항목 기준 — 실제로는 guide별 1항목. 여기선 로직만 본다.
         let picks = model.defaultPicks()
-        #expect(picks[guide.id] == "center")
+        #expect(picks["vg-1"] == "center")
+        #expect(picks["vg-2"] == "none")
     }
 
     @Test func finishPickingSavesPickedImageAndLinksOthers() async throws {
