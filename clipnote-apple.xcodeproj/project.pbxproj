@@ -8,23 +8,51 @@
 
 /* Begin PBXBuildFile section */
 		03DA969F16C9BF943BC40F41 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F527D1FE582F9DC5370A /* ContentView.swift */; };
-		9AB527B4927ED2A8F0043853 /* ClipnoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB75E10BDACC5EE04BC233E6 /* ClipnoteApp.swift */; };
+		55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */; };
+		58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20924CC388A5A71A968C279B /* PlayerWebView.swift */; };
+		CB00BD738D93A55FEF1B4EC4 /* SpikeCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */; };
+		D07EAE4DA4B8E749703A6A21 /* CaptureScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D26C2AB7348347DACFC7E /* CaptureScript.swift */; };
+		DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63428D6C8CFA774A9F628412 /* PlayerBridge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20924CC388A5A71A968C279B /* PlayerWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerWebView.swift; sourceTree = "<group>"; };
 		28E35D5A3C0D2430AF8290DB /* Clipnote.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Clipnote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		422D26C2AB7348347DACFC7E /* CaptureScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureScript.swift; sourceTree = "<group>"; };
 		5901F527D1FE582F9DC5370A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		AB75E10BDACC5EE04BC233E6 /* ClipnoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteApp.swift; sourceTree = "<group>"; };
+		63428D6C8CFA774A9F628412 /* PlayerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBridge.swift; sourceTree = "<group>"; };
+		767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteApp.swift; sourceTree = "<group>"; };
+		82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeCaptureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		7E3F5FA17BA0566519FB2A09 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				AB75E10BDACC5EE04BC233E6 /* ClipnoteApp.swift */,
 				5901F527D1FE582F9DC5370A /* ContentView.swift */,
+				97C0F0D2FBD7AB8899783377 /* App */,
+				88749F8620CE81A3B7DDB521 /* Capture */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		88749F8620CE81A3B7DDB521 /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				422D26C2AB7348347DACFC7E /* CaptureScript.swift */,
+				63428D6C8CFA774A9F628412 /* PlayerBridge.swift */,
+				20924CC388A5A71A968C279B /* PlayerWebView.swift */,
+				82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
+		97C0F0D2FBD7AB8899783377 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		C2218CB726E20C7B9FC7F22A /* Products */ = {
@@ -72,6 +100,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					2A23A650288ED641AE1E9288 = {
+						ProvisioningStyle = Manual;
+					};
 				};
 			};
 			buildConfigurationList = 8E7A37D3C2BF434D143DF184 /* Build configuration list for PBXProject "clipnote-apple" */;
@@ -98,8 +129,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AB527B4927ED2A8F0043853 /* ClipnoteApp.swift in Sources */,
+				D07EAE4DA4B8E749703A6A21 /* CaptureScript.swift in Sources */,
+				55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */,
 				03DA969F16C9BF943BC40F41 /* ContentView.swift in Sources */,
+				DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */,
+				58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */,
+				CB00BD738D93A55FEF1B4EC4 /* SpikeCaptureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +145,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = clipnote;
@@ -258,7 +295,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = clipnote;
