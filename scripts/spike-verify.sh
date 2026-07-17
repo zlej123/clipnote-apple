@@ -9,6 +9,8 @@ BUNDLE=com.clipnote.app
 xcodebuild -project clipnote-apple.xcodeproj -scheme Clipnote \
   -destination "platform=iOS Simulator,name=$SIM" -derivedDataPath build build | tail -2
 xcrun simctl boot "$SIM" 2>/dev/null || true
+# 이전 실행의 잔여 result.json이 새 실행 판정을 가짜로 통과시키지 않도록 데이터 초기화.
+xcrun simctl uninstall "$SIM" $BUNDLE 2>/dev/null || true
 xcrun simctl install "$SIM" build/Build/Products/Debug-iphonesimulator/clipnote.app
 xcrun simctl terminate "$SIM" $BUNDLE 2>/dev/null || true
 SIMCTL_CHILD_CLIPNOTE_SPIKE=1 xcrun simctl launch "$SIM" $BUNDLE
@@ -18,9 +20,11 @@ SIMCTL_CHILD_CLIPNOTE_SPIKE=1 xcrun simctl launch "$SIM" $BUNDLE
 CONTAINER=$(xcrun simctl get_app_container "$SIM" $BUNDLE data)
 RESULT="$CONTAINER/Documents/spike/result.json"
 echo "waiting for $RESULT"
-for i in $(seq 1 60); do
+# 워치독 예산(PlayerBridge): waitForMetadata 90s + primePlayer 10s + capture 30s*3 = 193s 최악치.
+# 여유를 두고 90회 * 4s = 360s까지 대기.
+for i in $(seq 1 90); do
   [ -f "$RESULT" ] && break
-  sleep 2
+  sleep 4
 done
 [ -f "$RESULT" ] || { echo "SPIKE FAIL: result.json not produced"; exit 1; }
 cat "$RESULT"
