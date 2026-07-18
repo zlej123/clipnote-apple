@@ -36,6 +36,11 @@ struct MustacheLiteTests {
         #expect(try MustacheLite.render(tpl, d(["x": .bool(true)])) == "A\nB\nC\n")
         #expect(try MustacheLite.render(tpl, d(["x": .bool(false)])) == "A\nC\n")
     }
+    @Test func standaloneSectionLinesHandleCRLF() throws {
+        let tpl = "A\r\n{{#x}}\r\nB\r\n{{/x}}\r\nC\r\n"
+        #expect(try MustacheLite.render(tpl, d(["x": .bool(true)])) == "A\r\nB\r\nC\r\n")
+        #expect(try MustacheLite.render(tpl, d(["x": .bool(false)])) == "A\r\nC\r\n")
+    }
     @Test func nestedSectionsOfSameShapeResolve() throws {
         let tpl = "{{#steps}}{{id}}:{{#visual_guides}}<{{id}}>{{/visual_guides}} {{/steps}}"
         let data = d(["steps": .list([

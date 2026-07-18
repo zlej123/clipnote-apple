@@ -21,9 +21,10 @@ enum MustacheLite {
     private static var token: Regex<(Substring, Substring, Substring)> {
         /\{\{([#^\/]?)\s*([\w.]+)\s*\}\}/
     }
-    // (?m)^[ \t]*({{[#^/]key}})[ \t]*\r?\n → \1 : standalone 섹션 태그 줄의 들여쓰기+개행 제거
+    // (?m)^[ \t]*({{[#^/]key}})[ \t]*\r?\n → \1 : standalone 섹션 태그 줄의 들여쓰기+개행 제거.
+    // unicodeScalar 의미론 필수: 기본 grapheme 의미론에선 "\r\n"이 단일 Character라 \r?\n이 CRLF를 못 쪼갬(파이썬 re와 갈림).
     private static var standaloneLine: Regex<(Substring, Substring)> {
-        /(?m)^[ \t]*(\{\{[#^\/][\w.]+\}\})[ \t]*\r?\n/
+        /(?m)^[ \t]*(\{\{[#^\/][\w.]+\}\})[ \t]*\r?\n/.matchingSemantics(.unicodeScalar)
     }
 
     static func render(_ template: String, _ data: MustacheValue) throws -> String {
