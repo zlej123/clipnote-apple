@@ -1,4 +1,8 @@
-// 유튜브 페이지에 주입하는 캡처 스크립트. video 엘리먼트에만 의존한다(DOM 구조 독립).
+// 유튜브 페이지에 주입하는 캡처 스크립트. video 엘리먼트 외에 광고 감지/스킵 셀렉터
+// (.ad-showing, .ad-interrupting, .ytp-skip-ad-button, .ytp-ad-skip-button,
+// .ytp-ad-skip-button-modern)와 prime()의 #movie_player에도 의존한다 — "DOM 구조
+// 독립"은 아니며, 광고 처리·cued 상태 재생 문제 때문에 의도적으로 트레이드오프됐다
+// (docs/spike-capture.md 참고).
 enum CaptureScript {
     static let source = #"""
     (() => {
@@ -6,7 +10,8 @@ enum CaptureScript {
       const video = () => document.querySelector("video");
       const sleep = (ms) => new Promise(r => setTimeout(r, ms));
       // 광고 대응(macOS www 실측: 프리롤 광고가 video 엘리먼트를 점유해 잘못된 프레임이 잡힘).
-      // 유일한 DOM 의존 — .ad-showing/스킵 버튼은 수년간 안정적인 유튜브 플레이어 클래스.
+      // video 외 DOM 의존 중 하나 — .ad-showing/스킵 버튼은 수년간 안정적인 유튜브 플레이어
+      // 클래스. 다른 하나는 prime()의 #movie_player(플레이어 API 접근용, 아래 참고).
       const adShowing = () => !!document.querySelector(".ad-showing, .ad-interrupting");
       function trySkipAd() {
         const b = document.querySelector(
