@@ -60,8 +60,10 @@ struct Analysis: Codable, Sendable, Equatable {
         case outputLanguage = "_output_language"
     }
 
-    /// step_id → Step (캡처·렌더에서 공용)
-    var stepsByID: [Int: Step] { Dictionary(uniqueKeysWithValues: steps.map { ($0.id, $0) }) }
+    /// step_id → Step (캡처·렌더에서 공용). 중복 id는 코어(capture.py dict)와 동일하게 last-wins.
+    var stepsByID: [Int: Step] {
+        Dictionary(steps.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
+    }
 }
 
 /// /v1/analyze 응답 envelope

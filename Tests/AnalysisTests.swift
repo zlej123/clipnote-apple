@@ -19,4 +19,13 @@ struct AnalysisTests {
         #expect(a.duration == 90)
         #expect(a.profile == "generic")
     }
+
+    @Test func stepsByIDToleratesDuplicateIDsLastWins() {
+        let a = Step(id: 1, summary: "a", detail: "", tStart: 0, tEnd: 1)
+        let b = Step(id: 1, summary: "b", detail: "", tStart: 2, tEnd: 3)
+        let analysis = Analysis(title: "t", summary: "s", category: nil, servings: nil,
+                                materials: [], steps: [a, b], visualGuides: [],
+                                duration: nil, profile: nil, outputLanguage: nil)
+        #expect(analysis.stepsByID[1]?.summary == "b")
+    }
 }
