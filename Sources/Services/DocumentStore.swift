@@ -32,8 +32,8 @@ final class DocumentStore: Sendable {
     func folderURL(id: String) -> URL { root.appendingPathComponent(id, isDirectory: true) }
 
     func save(videoId: String, title: String, analysis: Analysis, rawAnalysis: Data,
-              picks: [String: String], images: [String: Data], markdown: String) throws -> DocumentMeta {
-        let now = Date()
+              picks: [String: String], images: [String: Data], markdown: String,
+              now: Date = Date()) throws -> DocumentMeta {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "yyyyMMdd-HHmmss"
@@ -50,9 +50,7 @@ final class DocumentStore: Sendable {
         let meta = DocumentMeta(id: id, title: title, videoId: videoId,
                                 profile: analysis.profile ?? "generic",
                                 language: analysis.outputLanguage ?? "ko", createdAt: now)
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        let encoder = Self.makeEncoder()
 
         try Data(markdown.utf8).write(to: folder.appendingPathComponent("document.md"))
         try encoder.encode(meta).write(to: folder.appendingPathComponent("meta.json"))
@@ -66,8 +64,7 @@ final class DocumentStore: Sendable {
 
     func list() throws -> [DocumentMeta] {
         guard FileManager.default.fileExists(atPath: root.path) else { return [] }
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+        let decoder = Self.makeDecoder()
         let folders = try FileManager.default.contentsOfDirectory(
             at: root, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
         return folders.compactMap { folder -> DocumentMeta? in
@@ -80,8 +77,7 @@ final class DocumentStore: Sendable {
 
     func load(id: String) throws -> SavedDocument {
         let folder = folderURL(id: id)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+        let decoder = Self.makeDecoder()
         let meta = try decoder.decode(
             DocumentMeta.self, from: Data(contentsOf: folder.appendingPathComponent("meta.json")))
         let analysis = try JSONDecoder().decode(
@@ -96,5 +92,38 @@ final class DocumentStore: Sendable {
 
     func delete(id: String) throws {
         try FileManager.default.removeItem(at: folderURL(id: id))
+    }
+
+    // 같은 초 저장이 정렬에서 구분되도록 소수점 초까지 보존한다 (리뷰 반영:
+    // .iso8601은 초 단위 절삭이라 동시각 항목의 목록 순서가 videoId 알파벳순으로 역전됐음)
+    private static func makeEncoder() -> JSONEncoder {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        encoder.dateEncodingStrategy = .custom { date, enc in
+            var container = enc.singleValueContainer()
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            try container.encode(formatter.string(from: date))
+        }
+        return encoder
+    }
+
+    private static func makeDecoder() -> JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom { dec in
+            let container = try dec.singleValueContainer()
+            let raw = try container.decode(String.self)
+            let fractional = ISO8601DateFormatter()
+            fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            if let date = fractional.date(from: raw) { return date }
+            let plain = ISO8601DateFormatter()
+            plain.formatOptions = [.withInternetDateTime]
+            guard let date = plain.date(from: raw) else {
+                throw DecodingError.dataCorruptedError(
+                    in: container, debugDescription: "잘못된 날짜 형식: \(raw)")
+            }
+            return date
+        }
+        return decoder
     }
 }

@@ -70,4 +70,36 @@ struct DocumentStoreTests {
         let listed = try store.list()
         #expect(listed.first?.title == "나중")
     }
+
+    @Test func sameSecondSavesGetUniqueIDs() throws {
+        let (store, root) = try makeStore()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let (analysis, raw) = try sampleAnalysis()
+        let t = Date(timeIntervalSince1970: 1_800_000_000)
+        let first = try store.save(videoId: "dQw4w9WgXcQ", title: "1", analysis: analysis,
+                                   rawAnalysis: raw, picks: [:], images: [:], markdown: "1\n", now: t)
+        let second = try store.save(videoId: "dQw4w9WgXcQ", title: "2", analysis: analysis,
+                                    rawAnalysis: raw, picks: [:], images: [:], markdown: "2\n", now: t)
+        #expect(first.id != second.id)
+        #expect(second.id == "\(first.id)-2")
+        #expect(try store.list().count == 2)
+    }
+
+    @Test func listOrdersBySubSecondTimeNotVideoId() throws {
+        let (store, root) = try makeStore()
+        defer { try? FileManager.default.removeItem(at: root) }
+        let (analysis, raw) = try sampleAnalysis()
+        let t = Date(timeIntervalSince1970: 1_800_000_000)
+        // 알파벳 내림차순이면 zzz가 먼저 — 시간순(나중 저장 aaa)이 이겨야 한다
+        _ = try store.save(videoId: "zzzzzzzzzzz", title: "먼저", analysis: analysis,
+                           rawAnalysis: raw, picks: [:], images: [:], markdown: "1\n", now: t)
+        _ = try store.save(videoId: "aaaaaaaaaaa", title: "나중", analysis: analysis,
+                           rawAnalysis: raw, picks: [:], images: [:], markdown: "2\n",
+                           now: t.addingTimeInterval(0.05))
+        let listed = try store.list()
+        #expect(listed.map(\.title) == ["나중", "먼저"])
+        let doc = try store.load(id: listed[0].id)   // load의 meta/folder 라운드트립 보완 검증
+        #expect(doc.meta.title == "나중")
+        #expect(doc.folder.lastPathComponent == listed[0].id)
+    }
 }
