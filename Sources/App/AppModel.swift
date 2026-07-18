@@ -179,6 +179,9 @@ final class AppModel {
             var candidates: [CaptureCandidate] = []
             for (slot, time) in times.slots {
                 let jpeg = try? await bridge.captureFrame(at: time)
+                // 취소(reset) 확인: 슬롯 await 중 세대가 바뀌었으면 어떤 append도 하지 않는다 (리뷰 반영 —
+                // stale GuideCapture가 새 세대 captures에 섞이면 id 충돌 크래시/타 영상 이미지 혼입 가능)
+                guard gen == generation else { await bridge.endCaptureSession(); return }
                 candidates.append(CaptureCandidate(slot: slot, time: time, jpeg: jpeg))
             }
             captures.append(GuideCapture(guide: guide, candidates: candidates))
