@@ -28,6 +28,8 @@
 		9B62AFE5AE59A2423BF212A6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC7C06E40745B83B2ABD5B /* Settings.swift */; };
 		A3FDDC1878A6753D910679CD /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95074CB2F387CE12D43E8DA /* SettingsTests.swift */; };
 		B048E7331E8BB4ACF80A470F /* MustacheLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3656C1A46AF2A2255D46BA1B /* MustacheLite.swift */; };
+		B9CDC77070A7808B89E95A16 /* DocumentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B1E238A13D8A9884F801DC /* DocumentStore.swift */; };
+		C92445F9BDBA7A3DE72BC97B /* DocumentStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */; };
 		CB00BD738D93A55FEF1B4EC4 /* SpikeCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */; };
 		D07EAE4DA4B8E749703A6A21 /* CaptureScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D26C2AB7348347DACFC7E /* CaptureScript.swift */; };
 		DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63428D6C8CFA774A9F628412 /* PlayerBridge.swift */; };
@@ -59,6 +61,7 @@
 		5901F527D1FE582F9DC5370A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTimesTests.swift; sourceTree = "<group>"; };
 		63428D6C8CFA774A9F628412 /* PlayerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBridge.swift; sourceTree = "<group>"; };
+		67B1E238A13D8A9884F801DC /* DocumentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStore.swift; sourceTree = "<group>"; };
 		767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteApp.swift; sourceTree = "<group>"; };
 		78A46F54889DC7794BFD06B8 /* ClipnoteAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteAPITests.swift; sourceTree = "<group>"; };
 		7AA3A4271866979EE2794728 /* ClipnoteTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ClipnoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +69,7 @@
 		82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeCaptureView.swift; sourceTree = "<group>"; };
 		95A9058A08C2CB93E411284E /* CandidateTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTimes.swift; sourceTree = "<group>"; };
 		99048B61EEFA2BFFC865C74E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStoreTests.swift; sourceTree = "<group>"; };
 		B0785357617101FBE2328D1B /* ClipnoteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteAPI.swift; sourceTree = "<group>"; };
 		D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownBuilderGoldenTests.swift; sourceTree = "<group>"; };
 		DC2E252968509799BB54D5ED /* TestBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBundle.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				B0785357617101FBE2328D1B /* ClipnoteAPI.swift */,
+				67B1E238A13D8A9884F801DC /* DocumentStore.swift */,
 				1C53CA9270B06BE86C9EF3D0 /* KeychainStore.swift */,
 				E1E331A550C1529F607C7A2E /* MarkdownBuilder.swift */,
 				3656C1A46AF2A2255D46BA1B /* MustacheLite.swift */,
@@ -153,6 +158,7 @@
 				E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */,
 				59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */,
 				78A46F54889DC7794BFD06B8 /* ClipnoteAPITests.swift */,
+				9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */,
 				3D29DA080058AC8289743384 /* Fixtures */,
 				1005F4C611062AAA77ECDEEE /* KeychainStoreTests.swift */,
 				D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */,
@@ -281,6 +287,7 @@
 				00E1D0ECD04ABCFD654CDB86 /* ClipnoteAPI.swift in Sources */,
 				55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */,
 				03DA969F16C9BF943BC40F41 /* ContentView.swift in Sources */,
+				B9CDC77070A7808B89E95A16 /* DocumentStore.swift in Sources */,
 				7B5BB2F263CBE79E6E74AAF4 /* KeychainStore.swift in Sources */,
 				093FC8CF548AF0FC0D104685 /* MarkdownBuilder.swift in Sources */,
 				B048E7331E8BB4ACF80A470F /* MustacheLite.swift in Sources */,
@@ -299,6 +306,7 @@
 				F0927E072FF2FD35AC566BAD /* AnalysisTests.swift in Sources */,
 				70A5D8FB3F7FE9B4FCBD1984 /* CandidateTimesTests.swift in Sources */,
 				86F6833E9BE61FD69D542D97 /* ClipnoteAPITests.swift in Sources */,
+				C92445F9BDBA7A3DE72BC97B /* DocumentStoreTests.swift in Sources */,
 				179A2A6579E244A3E00F6783 /* KeychainStoreTests.swift in Sources */,
 				60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */,
 				2EF122CBA49C1B36CB19F374 /* MustacheLiteTests.swift in Sources */,
