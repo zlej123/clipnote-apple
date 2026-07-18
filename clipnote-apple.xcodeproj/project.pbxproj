@@ -95,6 +95,7 @@
 		2D02F2EB91181BAE3E0F996D /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		3656C1A46AF2A2255D46BA1B /* MustacheLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MustacheLite.swift; sourceTree = "<group>"; };
 		3D29DA080058AC8289743384 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fixtures; path = Tests/Fixtures; sourceTree = SOURCE_ROOT; };
+		422337F16ECC7377FB106D23 /* Clipnote-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Clipnote-macOS.entitlements"; sourceTree = "<group>"; };
 		422D26C2AB7348347DACFC7E /* CaptureScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureScript.swift; sourceTree = "<group>"; };
 		4CEF3886533D746433E25B83 /* CandidatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatePickerView.swift; sourceTree = "<group>"; };
 		4F537FF3C92D7F959A828FD0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				9ABBD420677B02D93F6AC1F9 /* Clipnote-iOS.entitlements */,
+				422337F16ECC7377FB106D23 /* Clipnote-macOS.entitlements */,
 				5901F527D1FE582F9DC5370A /* ContentView.swift */,
 				99048B61EEFA2BFFC865C74E /* Info.plist */,
 				97C0F0D2FBD7AB8899783377 /* App */,
@@ -507,6 +509,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_REQUIRED = NO;
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphone*]" = "Sources/Clipnote-iOS.entitlements";
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "Sources/Clipnote-macOS.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -698,6 +701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_REQUIRED = NO;
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphone*]" = "Sources/Clipnote-iOS.entitlements";
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "Sources/Clipnote-macOS.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;

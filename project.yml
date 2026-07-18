@@ -37,6 +37,7 @@ targets:
         SWIFT_VERSION: "6.0"
         TARGETED_DEVICE_FAMILY: "1,2"
         "CODE_SIGN_ENTITLEMENTS[sdk=iphone*]": Sources/Clipnote-iOS.entitlements
+        "CODE_SIGN_ENTITLEMENTS[sdk=macosx*]": Sources/Clipnote-macOS.entitlements
         # 개발팀 미설정 환경(CI/스파이크)에서 로컬 실행 가능하도록 ad-hoc 서명 사용.
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGN_STYLE: Manual
