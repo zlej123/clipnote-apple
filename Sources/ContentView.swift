@@ -1,20 +1,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var model = AppModel()
+
     var body: some View {
         NavigationStack {
-            VStack(spacing: 12) {
-                Image(systemName: "doc.text.image")
-                    .font(.system(size: 44))
-                Text("clipnote")
-                    .font(.largeTitle.bold())
-                Text("영상을 문서로. 애매한 순간은 실제 화면으로.")
-                    .foregroundStyle(.secondary)
-                #if DEBUG
-                NavigationLink("M0 캡처 스파이크") { SpikeCaptureView() }
-                #endif
+            HomeView(model: model)
+        }
+        .task {
+            #if DEBUG
+            if let url = ProcessInfo.processInfo.environment["CLIPNOTE_E2E_URL"] {
+                try? KeychainStore.geminiKey.save("e2e-stub-key")
+                if ProcessInfo.processInfo.environment["CLIPNOTE_LINK_MODE"] == "1" {
+                    UserDefaults.standard.set(true, forKey: Settings.linkModeKey)
+                }
+                model.autoContinue = true
+                await model.start(urlString: url)
             }
-            .padding()
+            #endif
         }
     }
 }

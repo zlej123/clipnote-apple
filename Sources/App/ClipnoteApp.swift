@@ -2,6 +2,10 @@ import SwiftUI
 
 @main
 struct ClipnoteApp: App {
+    init() {
+        Settings.registerDefaults()
+    }
+
     var body: some Scene {
         WindowGroup {
             #if DEBUG

@@ -1,0 +1,45 @@
+import SwiftUI
+
+enum Pasteboard {
+    @MainActor static var string: String? {
+        #if os(macOS)
+        NSPasteboard.general.string(forType: .string)
+        #else
+        UIPasteboard.general.string
+        #endif
+    }
+}
+
+/// 로컬 파일 이미지 (문서 폴더의 vg-N.jpg)
+struct LocalImage: View {
+    let url: URL
+    var body: some View {
+        #if os(macOS)
+        if let image = NSImage(contentsOf: url) {
+            Image(nsImage: image).resizable().scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+        #else
+        if let image = UIImage(contentsOfFile: url.path) {
+            Image(uiImage: image).resizable().scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+        #endif
+    }
+}
+
+enum ExportHelper {
+    /// 문서 폴더를 사용자가 고른 디렉토리 아래 <name>/으로 복사. 성공 시 nil, 실패 시 메시지.
+    static func copyFolder(from source: URL, to directory: URL, name: String) -> String? {
+        let accessing = directory.startAccessingSecurityScopedResource()
+        defer { if accessing { directory.stopAccessingSecurityScopedResource() } }
+        do {
+            let destination = directory.appendingPathComponent(name, isDirectory: true)
+            try? FileManager.default.removeItem(at: destination)
+            try FileManager.default.copyItem(at: source, to: destination)
+            return nil
+        } catch {
+            return "저장 실패: \(error.localizedDescription)"
+        }
+    }
+}
