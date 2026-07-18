@@ -92,9 +92,20 @@ final class SpikeRunner: ObservableObject {
     }
 
     static func spikeDir() throws -> URL {
-        let docs = try FileManager.default.url(
+        #if os(macOS)
+        // 예방적 어댑테이션(macOS): ad-hoc 서명은 리빌드마다 해시(LC_UUID)가 바뀌어 macOS가
+        // Documents 폴더 접근을 매번 "최초 요청"으로 취급할 수 있고, 그때 뜨는 TCC 동의
+        // 대화상자는 비대화형 실행에서 응답 주체가 없어 FileManager 호출이 막힐 수 있다.
+        // (이 세션의 실제 행 원인은 별도로 진단됨 — 아래 참고. 이 변경은 확인되지 않은 채로
+        // 남겨둔 리스크를 선제 제거하는 차원 — spike-capture.md의 "macOS 진단" 절 참고.)
+        // 스파이크 산출물은 사용자 문서가 아니므로 TCC 게이트가 없는 Caches로 우회.
+        let base = try FileManager.default.url(
+            for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        #else
+        let base = try FileManager.default.url(
             for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let dir = docs.appendingPathComponent("spike", isDirectory: true)
+        #endif
+        let dir = base.appendingPathComponent("spike", isDirectory: true)
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir
     }
