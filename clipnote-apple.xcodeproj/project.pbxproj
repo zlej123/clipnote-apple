@@ -8,21 +8,41 @@
 
 /* Begin PBXBuildFile section */
 		03DA969F16C9BF943BC40F41 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F527D1FE582F9DC5370A /* ContentView.swift */; };
+		24955C28DB6ED6FCF52C829E /* TestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2E252968509799BB54D5ED /* TestBundle.swift */; };
+		30DC30B5CFE165D9DDA89017 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 3D29DA080058AC8289743384 /* Fixtures */; };
+		3B3BE03D253C461CBED7F56F /* Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA983299132DF09EDDF81 /* Analysis.swift */; };
 		55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */; };
 		58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20924CC388A5A71A968C279B /* PlayerWebView.swift */; };
 		CB00BD738D93A55FEF1B4EC4 /* SpikeCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */; };
 		D07EAE4DA4B8E749703A6A21 /* CaptureScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D26C2AB7348347DACFC7E /* CaptureScript.swift */; };
 		DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63428D6C8CFA774A9F628412 /* PlayerBridge.swift */; };
+		F0927E072FF2FD35AC566BAD /* AnalysisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A2B647ADF040FE8453357AAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D3B0AAA39C801B034615528 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A23A650288ED641AE1E9288;
+			remoteInfo = Clipnote;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		20924CC388A5A71A968C279B /* PlayerWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerWebView.swift; sourceTree = "<group>"; };
+		26CEA983299132DF09EDDF81 /* Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analysis.swift; sourceTree = "<group>"; };
 		28E35D5A3C0D2430AF8290DB /* Clipnote.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Clipnote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D29DA080058AC8289743384 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fixtures; path = Tests/Fixtures; sourceTree = SOURCE_ROOT; };
 		422D26C2AB7348347DACFC7E /* CaptureScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureScript.swift; sourceTree = "<group>"; };
 		5901F527D1FE582F9DC5370A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		63428D6C8CFA774A9F628412 /* PlayerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBridge.swift; sourceTree = "<group>"; };
 		767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteApp.swift; sourceTree = "<group>"; };
+		7AA3A4271866979EE2794728 /* ClipnoteTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ClipnoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeCaptureView.swift; sourceTree = "<group>"; };
+		99048B61EEFA2BFFC865C74E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DC2E252968509799BB54D5ED /* TestBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBundle.swift; sourceTree = "<group>"; };
+		E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -30,8 +50,10 @@
 			isa = PBXGroup;
 			children = (
 				5901F527D1FE582F9DC5370A /* ContentView.swift */,
+				99048B61EEFA2BFFC865C74E /* Info.plist */,
 				97C0F0D2FBD7AB8899783377 /* App */,
 				88749F8620CE81A3B7DDB521 /* Capture */,
+				A92446F5E847075022683365 /* Models */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -55,18 +77,38 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		A92446F5E847075022683365 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				26CEA983299132DF09EDDF81 /* Analysis.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C2218CB726E20C7B9FC7F22A /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				28E35D5A3C0D2430AF8290DB /* Clipnote.app */,
+				7AA3A4271866979EE2794728 /* ClipnoteTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D1457F13C695A38B36BF42F0 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */,
+				3D29DA080058AC8289743384 /* Fixtures */,
+				DC2E252968509799BB54D5ED /* TestBundle.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		FAEA2CD9D6056DB066131670 = {
 			isa = PBXGroup;
 			children = (
 				7E3F5FA17BA0566519FB2A09 /* Sources */,
+				D1457F13C695A38B36BF42F0 /* Tests */,
 				C2218CB726E20C7B9FC7F22A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,6 +133,25 @@
 			productReference = 28E35D5A3C0D2430AF8290DB /* Clipnote.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6006AB36C40E359DEB2349FE /* ClipnoteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C244F33B10289B168025D59 /* Build configuration list for PBXNativeTarget "ClipnoteTests" */;
+			buildPhases = (
+				BA09A3A0A292F8E782A08A80 /* Sources */,
+				DB58048DCB07D316D05F85E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				375821A0ED84ADD7352CE944 /* PBXTargetDependency */,
+			);
+			name = ClipnoteTests;
+			packageProductDependencies = (
+			);
+			productName = ClipnoteTests;
+			productReference = 7AA3A4271866979EE2794728 /* ClipnoteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -101,6 +162,9 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					2A23A650288ED641AE1E9288 = {
+						ProvisioningStyle = Manual;
+					};
+					6006AB36C40E359DEB2349FE = {
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -120,15 +184,28 @@
 			projectRoot = "";
 			targets = (
 				2A23A650288ED641AE1E9288 /* Clipnote */,
+				6006AB36C40E359DEB2349FE /* ClipnoteTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB58048DCB07D316D05F85E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30DC30B5CFE165D9DDA89017 /* Fixtures in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9003007B4D2909987586DDA3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B3BE03D253C461CBED7F56F /* Analysis.swift in Sources */,
 				D07EAE4DA4B8E749703A6A21 /* CaptureScript.swift in Sources */,
 				55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */,
 				03DA969F16C9BF943BC40F41 /* ContentView.swift in Sources */,
@@ -138,9 +215,53 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA09A3A0A292F8E782A08A80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0927E072FF2FD35AC566BAD /* AnalysisTests.swift in Sources */,
+				24955C28DB6ED6FCF52C829E /* TestBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		375821A0ED84ADD7352CE944 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A23A650288ED641AE1E9288 /* Clipnote */;
+			targetProxy = A2B647ADF040FE8453357AAE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0E9B94EF0E9150348B8B024C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clipnote.tests;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clipnote.app/Clipnote";
+				"TEST_HOST[sdk=iphonesimulator*]" = "$(BUILT_PRODUCTS_DIR)/clipnote.app/clipnote";
+				"TEST_HOST[sdk=macosx*]" = "$(BUILT_PRODUCTS_DIR)/clipnote.app/Contents/MacOS/clipnote";
+			};
+			name = Debug;
+		};
 		3BFBBF0BBD71ED6C6FF17EAB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -149,10 +270,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = clipnote;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -291,6 +409,33 @@
 			};
 			name = Debug;
 		};
+		A3660216A40D57A655FD1973 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clipnote.tests;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clipnote.app/Clipnote";
+				"TEST_HOST[sdk=iphonesimulator*]" = "$(BUILT_PRODUCTS_DIR)/clipnote.app/clipnote";
+				"TEST_HOST[sdk=macosx*]" = "$(BUILT_PRODUCTS_DIR)/clipnote.app/Contents/MacOS/clipnote";
+			};
+			name = Release;
+		};
 		EBE42CF0E418ED492CF7F82D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -299,10 +444,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = clipnote;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -328,6 +470,15 @@
 			buildConfigurations = (
 				3BFBBF0BBD71ED6C6FF17EAB /* Debug */,
 				EBE42CF0E418ED492CF7F82D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6C244F33B10289B168025D59 /* Build configuration list for PBXNativeTarget "ClipnoteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E9B94EF0E9150348B8B024C /* Debug */,
+				A3660216A40D57A655FD1973 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

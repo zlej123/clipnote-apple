@@ -11,19 +11,50 @@ targets:
     supportedDestinations: [iOS, macOS]
     sources:
       - Sources
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: clipnote
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: true
+        UILaunchScreen: {}
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.clipnote.app
         PRODUCT_NAME: clipnote
-        GENERATE_INFOPLIST_FILE: YES
         CURRENT_PROJECT_VERSION: 1
         MARKETING_VERSION: 0.1.0
         SWIFT_VERSION: "6.0"
         TARGETED_DEVICE_FAMILY: "1,2"
-        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
-        INFOPLIST_KEY_UILaunchScreen_Generation: YES
-        INFOPLIST_KEY_CFBundleDisplayName: clipnote
         # 개발팀 미설정 환경(CI/스파이크)에서 로컬 실행 가능하도록 ad-hoc 서명 사용.
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGNING_REQUIRED: NO
+  ClipnoteTests:
+    type: bundle.unit-test
+    supportedDestinations: [iOS, macOS]
+    sources:
+      - path: Tests
+        excludes:
+          - "Fixtures/**"
+      - path: Tests/Fixtures
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - target: Clipnote
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clipnote.tests
+        SWIFT_VERSION: "6.0"
+        GENERATE_INFOPLIST_FILE: YES
+        BUNDLE_LOADER: $(TEST_HOST)
+        "TEST_HOST[sdk=macosx*]": $(BUILT_PRODUCTS_DIR)/clipnote.app/Contents/MacOS/clipnote
+        "TEST_HOST[sdk=iphonesimulator*]": $(BUILT_PRODUCTS_DIR)/clipnote.app/clipnote
+        # 개발팀 미설정 환경(CI/스파이크)에서 로컬 실행 가능하도록 ad-hoc 서명 사용 (테스트 번들도 동일 서명 문제를 겪을 수 있음).
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGN_STYLE: Manual
         CODE_SIGNING_REQUIRED: NO
@@ -34,3 +65,7 @@ schemes:
         Clipnote: all
     run:
       config: Debug
+    test:
+      config: Debug
+      targets:
+        - ClipnoteTests
