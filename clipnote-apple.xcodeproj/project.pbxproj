@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		03DA969F16C9BF943BC40F41 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5901F527D1FE582F9DC5370A /* ContentView.swift */; };
+		093FC8CF548AF0FC0D104685 /* MarkdownBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E331A550C1529F607C7A2E /* MarkdownBuilder.swift */; };
+		135D0BE366E1B9376F0C4D10 /* skill-core in Resources */ = {isa = PBXBuildFile; fileRef = 086E183F0701CE008CB3614E /* skill-core */; };
 		24955C28DB6ED6FCF52C829E /* TestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2E252968509799BB54D5ED /* TestBundle.swift */; };
 		25B6A500536A8B66C8FC0570 /* YouTubeURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B65C52C1E88D7F735C6E0 /* YouTubeURLTests.swift */; };
 		2EF122CBA49C1B36CB19F374 /* MustacheLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */; };
@@ -15,6 +17,7 @@
 		3B3BE03D253C461CBED7F56F /* Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA983299132DF09EDDF81 /* Analysis.swift */; };
 		55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */; };
 		58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20924CC388A5A71A968C279B /* PlayerWebView.swift */; };
+		60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */; };
 		70A5D8FB3F7FE9B4FCBD1984 /* CandidateTimesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */; };
 		75D14BA22DA228CF3A4CBBA1 /* CandidateTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9058A08C2CB93E411284E /* CandidateTimes.swift */; };
 		7964969B970062E7A0A94E2D /* YouTubeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A890E9DC0157F018709067 /* YouTubeURL.swift */; };
@@ -37,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		02A890E9DC0157F018709067 /* YouTubeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeURL.swift; sourceTree = "<group>"; };
+		086E183F0701CE008CB3614E /* skill-core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "skill-core"; path = "Resources/skill-core"; sourceTree = SOURCE_ROOT; };
 		1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MustacheLiteTests.swift; sourceTree = "<group>"; };
 		20924CC388A5A71A968C279B /* PlayerWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerWebView.swift; sourceTree = "<group>"; };
 		26CEA983299132DF09EDDF81 /* Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analysis.swift; sourceTree = "<group>"; };
@@ -52,12 +56,22 @@
 		82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeCaptureView.swift; sourceTree = "<group>"; };
 		95A9058A08C2CB93E411284E /* CandidateTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTimes.swift; sourceTree = "<group>"; };
 		99048B61EEFA2BFFC865C74E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownBuilderGoldenTests.swift; sourceTree = "<group>"; };
 		DC2E252968509799BB54D5ED /* TestBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBundle.swift; sourceTree = "<group>"; };
 		DC6B65C52C1E88D7F735C6E0 /* YouTubeURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeURLTests.swift; sourceTree = "<group>"; };
+		E1E331A550C1529F607C7A2E /* MarkdownBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownBuilder.swift; sourceTree = "<group>"; };
 		E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		26C629A60745799F00B25BC7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				086E183F0701CE008CB3614E /* skill-core */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		7E3F5FA17BA0566519FB2A09 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +107,7 @@
 		9A499F66C73384DCFF0B9638 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E1E331A550C1529F607C7A2E /* MarkdownBuilder.swift */,
 				3656C1A46AF2A2255D46BA1B /* MustacheLite.swift */,
 			);
 			path = Services;
@@ -123,6 +138,7 @@
 				E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */,
 				59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */,
 				3D29DA080058AC8289743384 /* Fixtures */,
+				D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */,
 				1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */,
 				DC2E252968509799BB54D5ED /* TestBundle.swift */,
 				DC6B65C52C1E88D7F735C6E0 /* YouTubeURLTests.swift */,
@@ -133,6 +149,7 @@
 		FAEA2CD9D6056DB066131670 = {
 			isa = PBXGroup;
 			children = (
+				26C629A60745799F00B25BC7 /* Resources */,
 				7E3F5FA17BA0566519FB2A09 /* Sources */,
 				D1457F13C695A38B36BF42F0 /* Tests */,
 				C2218CB726E20C7B9FC7F22A /* Products */,
@@ -147,6 +164,7 @@
 			buildConfigurationList = 5BDF6143C62E846192111495 /* Build configuration list for PBXNativeTarget "Clipnote" */;
 			buildPhases = (
 				9003007B4D2909987586DDA3 /* Sources */,
+				277543CB24B233A03395C583 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -216,6 +234,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		277543CB24B233A03395C583 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				135D0BE366E1B9376F0C4D10 /* skill-core in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB58048DCB07D316D05F85E5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -236,6 +262,7 @@
 				D07EAE4DA4B8E749703A6A21 /* CaptureScript.swift in Sources */,
 				55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */,
 				03DA969F16C9BF943BC40F41 /* ContentView.swift in Sources */,
+				093FC8CF548AF0FC0D104685 /* MarkdownBuilder.swift in Sources */,
 				B048E7331E8BB4ACF80A470F /* MustacheLite.swift in Sources */,
 				DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */,
 				58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */,
@@ -250,6 +277,7 @@
 			files = (
 				F0927E072FF2FD35AC566BAD /* AnalysisTests.swift in Sources */,
 				70A5D8FB3F7FE9B4FCBD1984 /* CandidateTimesTests.swift in Sources */,
+				60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */,
 				2EF122CBA49C1B36CB19F374 /* MustacheLiteTests.swift in Sources */,
 				24955C28DB6ED6FCF52C829E /* TestBundle.swift in Sources */,
 				25B6A500536A8B66C8FC0570 /* YouTubeURLTests.swift in Sources */,

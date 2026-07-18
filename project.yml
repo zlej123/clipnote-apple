@@ -11,6 +11,9 @@ targets:
     supportedDestinations: [iOS, macOS]
     sources:
       - Sources
+      - path: Resources/skill-core
+        type: folder
+        buildPhase: resources
     info:
       path: Sources/Info.plist
       properties:
