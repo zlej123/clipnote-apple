@@ -17,6 +17,10 @@ struct CandidateTimesTests {
         let t = CandidateTimes(step: nil, center: 2, duration: 100)
         #expect(t.before == 0 && t.center == 2 && t.after == 6)
     }
+    @Test func withoutStepClampsAfterToDurationEnd() {
+        let t = CandidateTimes(step: nil, center: 97, duration: 100)
+        #expect(t.before == 93 && t.after == 99)   // after = min(duration-1, center+4)
+    }
     @Test func slotsOrderIsBeforeCenterAfter() {
         let t = CandidateTimes(step: nil, center: 10, duration: 100)
         #expect(t.slots.map(\.slot) == ["before", "center", "after"])

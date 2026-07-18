@@ -1,14 +1,12 @@
 import Foundation
 
 enum YouTubeURL {
-    // 컴파일러 강제 어댑테이션(Swift 6 strict concurrency): Regex<(Substring, Substring)>가
-    // Sendable로 추론되지 않아 static let이 "may have shared mutable state"로 거부됨.
-    // 컴파일된 정규식은 초기화 후 불변으로만 읽히므로 nonisolated(unsafe)로 안전하게 공유.
-    private nonisolated(unsafe) static let pattern = /(?:v=|youtu\.be\/|shorts\/)([\w-]{11})(?![\w-])/
-
+    /// 코어 common.py 정규식 + 강화 2가지(11자 뒤경계, 유튜브 도메인 확인).
+    /// 리터럴은 컴파일 타임에 구워지므로 호출마다 재컴파일 비용은 없다.
     static func videoID(from string: String) -> String? {
         guard string.contains("youtube.com") || string.contains("youtu.be") else { return nil }
-        guard let match = string.firstMatch(of: pattern) else { return nil }
+        guard let match = string.firstMatch(
+            of: /(?:v=|youtu\.be\/|shorts\/)([\w-]{11})(?![\w-])/) else { return nil }
         return String(match.1)
     }
 
