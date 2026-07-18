@@ -25,6 +25,9 @@ targets:
         LSSupportsOpeningDocumentsInPlace: true
         NSAppTransportSecurity:
           NSAllowsLocalNetworking: true
+    dependencies:
+      - target: ClipnoteShare
+        platformFilter: iOS
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.clipnote.app
@@ -33,6 +36,7 @@ targets:
         MARKETING_VERSION: 0.1.0
         SWIFT_VERSION: "6.0"
         TARGETED_DEVICE_FAMILY: "1,2"
+        "CODE_SIGN_ENTITLEMENTS[sdk=iphone*]": Sources/Clipnote-iOS.entitlements
         # 개발팀 미설정 환경(CI/스파이크)에서 로컬 실행 가능하도록 ad-hoc 서명 사용.
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGN_STYLE: Manual
@@ -61,6 +65,28 @@ targets:
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGN_STYLE: Manual
         CODE_SIGNING_REQUIRED: NO
+  ClipnoteShare:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - ShareExtension
+      - Sources/Models/YouTubeURL.swift
+    info:
+      path: ShareExtension/Info.plist
+      properties:
+        CFBundleDisplayName: clipnote
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.clipnote.app.share
+        SWIFT_VERSION: "6.0"
+        CODE_SIGN_ENTITLEMENTS: ShareExtension/ClipnoteShare.entitlements
 schemes:
   Clipnote:
     build:

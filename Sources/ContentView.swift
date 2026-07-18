@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var model = AppModel()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         NavigationStack {
@@ -18,6 +19,12 @@ struct ContentView: View {
                 await model.start(urlString: url)
             }
             #endif
+        }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active, let url = ShareInbox.pop() {
+                model.autoContinue = false
+                Task { await model.start(urlString: url) }
+            }
         }
     }
 }

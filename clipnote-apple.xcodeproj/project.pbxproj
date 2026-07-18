@@ -19,6 +19,7 @@
 		30DC30B5CFE165D9DDA89017 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 3D29DA080058AC8289743384 /* Fixtures */; };
 		3B3BE03D253C461CBED7F56F /* Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA983299132DF09EDDF81 /* Analysis.swift */; };
 		55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */; };
+		58C2E2C5F997DC2422820D2B /* YouTubeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A890E9DC0157F018709067 /* YouTubeURL.swift */; };
 		58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20924CC388A5A71A968C279B /* PlayerWebView.swift */; };
 		60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */; };
 		63A73CFB7E75AEFCD159375E /* CandidatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF3886533D746433E25B83 /* CandidatePickerView.swift */; };
@@ -27,11 +28,13 @@
 		70A5D8FB3F7FE9B4FCBD1984 /* CandidateTimesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */; };
 		73BC5151FDDA4ECF48BDA83C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F537FF3C92D7F959A828FD0 /* HomeView.swift */; };
 		75D14BA22DA228CF3A4CBBA1 /* CandidateTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9058A08C2CB93E411284E /* CandidateTimes.swift */; };
+		763938967BEBD5D24E9533CC /* ShareInboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5903F609B4D280036CDE8BB5 /* ShareInboxTests.swift */; };
 		7964969B970062E7A0A94E2D /* YouTubeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A890E9DC0157F018709067 /* YouTubeURL.swift */; };
 		7B5BB2F263CBE79E6E74AAF4 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C53CA9270B06BE86C9EF3D0 /* KeychainStore.swift */; };
 		86F6833E9BE61FD69D542D97 /* ClipnoteAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A46F54889DC7794BFD06B8 /* ClipnoteAPITests.swift */; };
 		9B62AFE5AE59A2423BF212A6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC7C06E40745B83B2ABD5B /* Settings.swift */; };
 		A3FDDC1878A6753D910679CD /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95074CB2F387CE12D43E8DA /* SettingsTests.swift */; };
+		A7ED52438464909A7E6825D3 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78FA600AC9089972CD6951F /* ShareViewController.swift */; };
 		B048E7331E8BB4ACF80A470F /* MustacheLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3656C1A46AF2A2255D46BA1B /* MustacheLite.swift */; };
 		B9CDC77070A7808B89E95A16 /* DocumentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B1E238A13D8A9884F801DC /* DocumentStore.swift */; };
 		BBB3B01E75059040AB8D5D0E /* AnalyzeFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF4E4D457ECB0DEAD6EB7C /* AnalyzeFlowView.swift */; };
@@ -39,13 +42,22 @@
 		C92445F9BDBA7A3DE72BC97B /* DocumentStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */; };
 		CB00BD738D93A55FEF1B4EC4 /* SpikeCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */; };
 		D07EAE4DA4B8E749703A6A21 /* CaptureScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D26C2AB7348347DACFC7E /* CaptureScript.swift */; };
+		DAD28AD8CB9ACAF3B4C7F432 /* ShareInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0D0A9FFF81BFAF7E708572 /* ShareInbox.swift */; };
 		DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63428D6C8CFA774A9F628412 /* PlayerBridge.swift */; };
+		E3AC82813D79937D94143C3C /* ClipnoteShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EF1BDBF762D2D5BD14E61A04 /* ClipnoteShare.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E64E7CB20C1E29F76275F638 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566341E0C576E91DCB9F6D80 /* AppModel.swift */; };
 		ECA478199E0D15C7C24874DF /* CapturePipelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A801FF4295DCF414932918 /* CapturePipelineTests.swift */; };
 		F0927E072FF2FD35AC566BAD /* AnalysisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		72B9119BD2F62EA4E9B315D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D3B0AAA39C801B034615528 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6548556369CFC336C33C5280;
+			remoteInfo = ClipnoteShare;
+		};
 		A2B647ADF040FE8453357AAE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0D3B0AAA39C801B034615528 /* Project object */;
@@ -55,6 +67,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9B98FD0B677DE4878DE0EA01 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E3AC82813D79937D94143C3C /* ClipnoteShare.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		02A890E9DC0157F018709067 /* YouTubeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeURL.swift; sourceTree = "<group>"; };
 		02DF4E4D457ECB0DEAD6EB7C /* AnalyzeFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeFlowView.swift; sourceTree = "<group>"; };
@@ -62,6 +88,7 @@
 		1005F4C611062AAA77ECDEEE /* KeychainStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStoreTests.swift; sourceTree = "<group>"; };
 		1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MustacheLiteTests.swift; sourceTree = "<group>"; };
 		1C53CA9270B06BE86C9EF3D0 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		1E0D0A9FFF81BFAF7E708572 /* ShareInbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInbox.swift; sourceTree = "<group>"; };
 		20924CC388A5A71A968C279B /* PlayerWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerWebView.swift; sourceTree = "<group>"; };
 		26CEA983299132DF09EDDF81 /* Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analysis.swift; sourceTree = "<group>"; };
 		28E35D5A3C0D2430AF8290DB /* Clipnote.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Clipnote.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +100,7 @@
 		4F537FF3C92D7F959A828FD0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		566341E0C576E91DCB9F6D80 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		5901F527D1FE582F9DC5370A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5903F609B4D280036CDE8BB5 /* ShareInboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInboxTests.swift; sourceTree = "<group>"; };
 		59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTimesTests.swift; sourceTree = "<group>"; };
 		63428D6C8CFA774A9F628412 /* PlayerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBridge.swift; sourceTree = "<group>"; };
 		67B1E238A13D8A9884F801DC /* DocumentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStore.swift; sourceTree = "<group>"; };
@@ -80,9 +108,12 @@
 		78A46F54889DC7794BFD06B8 /* ClipnoteAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteAPITests.swift; sourceTree = "<group>"; };
 		7AA3A4271866979EE2794728 /* ClipnoteTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ClipnoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAC7C06E40745B83B2ABD5B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		7FF25858BF4FE970AF728713 /* ClipnoteShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipnoteShare.entitlements; sourceTree = "<group>"; };
 		82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeCaptureView.swift; sourceTree = "<group>"; };
 		95A9058A08C2CB93E411284E /* CandidateTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTimes.swift; sourceTree = "<group>"; };
 		99048B61EEFA2BFFC865C74E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9ABBD420677B02D93F6AC1F9 /* Clipnote-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Clipnote-iOS.entitlements"; sourceTree = "<group>"; };
+		9D6A6A896A1900F05F68DAF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStoreTests.swift; sourceTree = "<group>"; };
 		A582DCBA84994547250330F9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B0785357617101FBE2328D1B /* ClipnoteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteAPI.swift; sourceTree = "<group>"; };
@@ -95,6 +126,8 @@
 		E1E331A550C1529F607C7A2E /* MarkdownBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownBuilder.swift; sourceTree = "<group>"; };
 		E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTests.swift; sourceTree = "<group>"; };
 		E95074CB2F387CE12D43E8DA /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
+		EF1BDBF762D2D5BD14E61A04 /* ClipnoteShare.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ClipnoteShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F78FA600AC9089972CD6951F /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -122,6 +155,7 @@
 		7E3F5FA17BA0566519FB2A09 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9ABBD420677B02D93F6AC1F9 /* Clipnote-iOS.entitlements */,
 				5901F527D1FE582F9DC5370A /* ContentView.swift */,
 				99048B61EEFA2BFFC865C74E /* Info.plist */,
 				97C0F0D2FBD7AB8899783377 /* App */,
@@ -149,6 +183,7 @@
 			children = (
 				566341E0C576E91DCB9F6D80 /* AppModel.swift */,
 				767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */,
+				1E0D0A9FFF81BFAF7E708572 /* ShareInbox.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -180,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				28E35D5A3C0D2430AF8290DB /* Clipnote.app */,
+				EF1BDBF762D2D5BD14E61A04 /* ClipnoteShare.appex */,
 				7AA3A4271866979EE2794728 /* ClipnoteTests.xctest */,
 			);
 			name = Products;
@@ -199,16 +235,28 @@
 				D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */,
 				1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */,
 				E95074CB2F387CE12D43E8DA /* SettingsTests.swift */,
+				5903F609B4D280036CDE8BB5 /* ShareInboxTests.swift */,
 				DC2E252968509799BB54D5ED /* TestBundle.swift */,
 				DC6B65C52C1E88D7F735C6E0 /* YouTubeURLTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		E2F59877B872B094CB0E3E94 /* ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				7FF25858BF4FE970AF728713 /* ClipnoteShare.entitlements */,
+				9D6A6A896A1900F05F68DAF6 /* Info.plist */,
+				F78FA600AC9089972CD6951F /* ShareViewController.swift */,
+			);
+			path = ShareExtension;
+			sourceTree = "<group>";
+		};
 		FAEA2CD9D6056DB066131670 = {
 			isa = PBXGroup;
 			children = (
 				26C629A60745799F00B25BC7 /* Resources */,
+				E2F59877B872B094CB0E3E94 /* ShareExtension */,
 				7E3F5FA17BA0566519FB2A09 /* Sources */,
 				D1457F13C695A38B36BF42F0 /* Tests */,
 				C2218CB726E20C7B9FC7F22A /* Products */,
@@ -224,10 +272,12 @@
 			buildPhases = (
 				9003007B4D2909987586DDA3 /* Sources */,
 				277543CB24B233A03395C583 /* Resources */,
+				9B98FD0B677DE4878DE0EA01 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D3F3AC487C1D7BE65864AD35 /* PBXTargetDependency */,
 			);
 			name = Clipnote;
 			packageProductDependencies = (
@@ -254,6 +304,23 @@
 			productName = ClipnoteTests;
 			productReference = 7AA3A4271866979EE2794728 /* ClipnoteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6548556369CFC336C33C5280 /* ClipnoteShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38D2E7FBD1A347674D1D8149 /* Build configuration list for PBXNativeTarget "ClipnoteShare" */;
+			buildPhases = (
+				E54A1D3959166DEF4021393A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClipnoteShare;
+			packageProductDependencies = (
+			);
+			productName = ClipnoteShare;
+			productReference = EF1BDBF762D2D5BD14E61A04 /* ClipnoteShare.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -288,6 +355,7 @@
 			targets = (
 				2A23A650288ED641AE1E9288 /* Clipnote */,
 				6006AB36C40E359DEB2349FE /* ClipnoteTests */,
+				6548556369CFC336C33C5280 /* ClipnoteShare */,
 			);
 		};
 /* End PBXProject section */
@@ -335,6 +403,7 @@
 				58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */,
 				9B62AFE5AE59A2423BF212A6 /* Settings.swift in Sources */,
 				6971DA3494084729BACD0C58 /* SettingsView.swift in Sources */,
+				DAD28AD8CB9ACAF3B4C7F432 /* ShareInbox.swift in Sources */,
 				CB00BD738D93A55FEF1B4EC4 /* SpikeCaptureView.swift in Sources */,
 				23C6649CAE779F414FBCC05A /* Support.swift in Sources */,
 				7964969B970062E7A0A94E2D /* YouTubeURL.swift in Sources */,
@@ -355,8 +424,18 @@
 				60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */,
 				2EF122CBA49C1B36CB19F374 /* MustacheLiteTests.swift in Sources */,
 				A3FDDC1878A6753D910679CD /* SettingsTests.swift in Sources */,
+				763938967BEBD5D24E9533CC /* ShareInboxTests.swift in Sources */,
 				24955C28DB6ED6FCF52C829E /* TestBundle.swift in Sources */,
 				25B6A500536A8B66C8FC0570 /* YouTubeURLTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E54A1D3959166DEF4021393A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7ED52438464909A7E6825D3 /* ShareViewController.swift in Sources */,
+				58C2E2C5F997DC2422820D2B /* YouTubeURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +446,12 @@
 			isa = PBXTargetDependency;
 			target = 2A23A650288ED641AE1E9288 /* Clipnote */;
 			targetProxy = A2B647ADF040FE8453357AAE /* PBXContainerItemProxy */;
+		};
+		D3F3AC487C1D7BE65864AD35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 6548556369CFC336C33C5280 /* ClipnoteShare */;
+			targetProxy = 72B9119BD2F62EA4E9B315D7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -398,11 +483,30 @@
 			};
 			name = Debug;
 		};
+		3B1F086F20867F890C13400C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ClipnoteShare.entitlements;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clipnote.app.share;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		3BFBBF0BBD71ED6C6FF17EAB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_REQUIRED = NO;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphone*]" = "Sources/Clipnote-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -474,7 +578,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -538,10 +641,27 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9513562E704EF4529B2E3A04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ClipnoteShare.entitlements;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clipnote.app.share;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -577,6 +697,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_REQUIRED = NO;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphone*]" = "Sources/Clipnote-iOS.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -601,6 +722,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		38D2E7FBD1A347674D1D8149 /* Build configuration list for PBXNativeTarget "ClipnoteShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9513562E704EF4529B2E3A04 /* Debug */,
+				3B1F086F20867F890C13400C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		5BDF6143C62E846192111495 /* Build configuration list for PBXNativeTarget "Clipnote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
