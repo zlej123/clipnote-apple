@@ -5,6 +5,8 @@ import Foundation
 final class StubURLProtocol: URLProtocol {
     nonisolated(unsafe) static var handler: (@Sendable (URLRequest) -> (Int, Data))?
     nonisolated(unsafe) static var networkError: (any Error)?
+    nonisolated(unsafe) static var capturedRequest: URLRequest?
+    nonisolated(unsafe) static var capturedBody: Data?
 
     override class func canInit(with request: URLRequest) -> Bool { true }
     override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
@@ -13,6 +15,8 @@ final class StubURLProtocol: URLProtocol {
             client?.urlProtocol(self, didFailWithError: error)
             return
         }
+        Self.capturedRequest = request
+        Self.capturedBody = request.bodyData
         let (status, data) = Self.handler!(request)
         let response = HTTPURLResponse(
             url: request.url!, statusCode: status, httpVersion: nil,
@@ -55,21 +59,14 @@ struct ClipnoteAPITests {
     private func reset() {
         StubURLProtocol.handler = nil
         StubURLProtocol.networkError = nil
+        StubURLProtocol.capturedRequest = nil
+        StubURLProtocol.capturedBody = nil
     }
 
     @Test func successDecodesAndPreservesRawAnalysis() async throws {
         defer { reset() }
         let fixture = try Bundle.fixtureData("analyze-response")
-        StubURLProtocol.handler = { request in
-            #expect(request.url?.path == "/v1/analyze")
-            #expect(request.value(forHTTPHeaderField: "X-Gemini-Key") == "test-key")
-            let body = try! JSONSerialization.jsonObject(
-                with: request.bodyData ?? Data()) as! [String: Any]
-            #expect(body["duration"] as? Int == 90)          // 결정 #3: duration은 앱이 보낸다
-            #expect(body["max_guides"] as? Int == 5)
-            #expect(body["model"] == nil)                    // 서버 기본값 사용
-            return (200, fixture)
-        }
+        StubURLProtocol.handler = { _ in (200, fixture) }
         let result = try await makeAPI().analyze(
             videoURL: "https://m.youtube.com/watch?v=dQw4w9WgXcQ",
             profile: "generic", language: "ko", duration: 90, geminiKey: "test-key")
@@ -77,6 +74,17 @@ struct ClipnoteAPITests {
         #expect(result.analysis.steps.count == 2)
         let raw = try JSONSerialization.jsonObject(with: result.rawAnalysis) as! [String: Any]
         #expect(raw["_model"] as? String == "gemini-flash-lite-latest")  // 모델에 없는 키 보존
+
+        // 요청 형태 검증 — 핸들러 클로저 안 #expect는 Swift Testing 컨텍스트에 전파되지 않아
+        // 위반이 배너에서 위장되므로(리뷰 확인) 캡처 후 테스트 본문에서 단언한다.
+        let request = try #require(StubURLProtocol.capturedRequest)
+        #expect(request.url?.path == "/v1/analyze")
+        #expect(request.value(forHTTPHeaderField: "X-Gemini-Key") == "test-key")
+        let body = try JSONSerialization.jsonObject(
+            with: try #require(StubURLProtocol.capturedBody)) as! [String: Any]
+        #expect(body["duration"] as? Int == 90)          // 결정 #3: duration은 앱이 보낸다
+        #expect(body["max_guides"] as? Int == 5)
+        #expect(body["model"] == nil)                    // 서버 기본값 사용
     }
 
     @Test func maps401ToMissingKey() async throws {
