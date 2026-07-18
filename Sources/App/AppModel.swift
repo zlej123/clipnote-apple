@@ -13,6 +13,20 @@ enum FlowStage: Equatable {
     case failed(String)
 }
 
+struct CaptureCandidate: Sendable, Equatable {
+    var slot: String   // "before" | "center" | "after"
+    var time: Int
+    var jpeg: Data?    // nil = 이 후보 캡처 실패
+}
+
+struct GuideCapture: Identifiable, Sendable {
+    var guide: VisualGuide
+    var candidates: [CaptureCandidate]
+    var id: String { guide.id }
+    /// 세 후보 모두 실패 → 자동 링크 폴백 대상
+    var failed: Bool { candidates.allSatisfy { $0.jpeg == nil } }
+}
+
 @MainActor @Observable
 final class AppModel {
     var stage: FlowStage = .idle
@@ -30,6 +44,8 @@ final class AppModel {
     private var currentVideoId: String?
     private var currentURLString: String?
     private var pendingDuration: Int?
+    var captures: [GuideCapture] = []
+    var pendingResult: AnalyzeResult?
     /// reset() 시 증가 — 취소 뒤 도착한 비동기 결과가 stage를 덮어쓰지 않게 한다
     private var generation = 0
 
@@ -111,8 +127,11 @@ final class AppModel {
                 duration: duration,
                 geminiKey: key)
             guard gen == generation else { return }   // 취소됨
-            // 링크 모드(및 Task 11 전 기본 경로): 캡처 없이 링크 문서
-            await buildDocument(result: result, picks: [:], images: [:])
+            if linkMode {
+                await buildDocument(result: result, picks: [:], images: [:])
+            } else {
+                await captureCandidates(result: result)
+            }
         } catch {
             guard gen == generation else { return }
             stage = .failed((error as? LocalizedError)?.errorDescription
@@ -139,6 +158,62 @@ final class AppModel {
         }
     }
 
+    /// 가이드×3슬롯 캡처. 실패는 후보 단위 nil로 격리(가이드 단위 링크 폴백 — 전체 중단 없음).
+    func captureCandidates(result: AnalyzeResult) async {
+        pendingResult = result
+        let steps = result.analysis.stepsByID
+        let guides = result.analysis.visualGuides.filter { $0.bestVisualTimestamp != nil }
+        guard !guides.isEmpty else {
+            await buildDocument(result: result, picks: [:], images: [:])
+            return
+        }
+        let duration = result.analysis.duration ?? pendingDuration ?? 0
+        let gen = generation
+        captures = []
+        try? await bridge.beginCaptureSession()
+        for (index, guide) in guides.enumerated() {
+            guard gen == generation else { await bridge.endCaptureSession(); return }
+            stage = .capturing(current: index + 1, total: guides.count)
+            let times = CandidateTimes(step: steps[guide.stepId],
+                                       center: guide.bestVisualTimestamp!, duration: duration)
+            var candidates: [CaptureCandidate] = []
+            for (slot, time) in times.slots {
+                let jpeg = try? await bridge.captureFrame(at: time)
+                candidates.append(CaptureCandidate(slot: slot, time: time, jpeg: jpeg))
+            }
+            captures.append(GuideCapture(guide: guide, candidates: candidates))
+        }
+        await bridge.endCaptureSession()
+        guard gen == generation else { return }
+        stage = .picking
+        if autoContinue { await finishPicking(picks: defaultPicks()) }
+    }
+
+    /// center가 살아 있으면 center, 아니면 none (확장의 기본 체크와 동일)
+    func defaultPicks() -> [String: String] {
+        Dictionary(uniqueKeysWithValues: captures.map { capture in
+            (capture.guide.id,
+             capture.candidates.contains { $0.slot == "center" && $0.jpeg != nil }
+                ? "center" : "none")
+        })
+    }
+
+    func finishPicking(picks: [String: String]) async {
+        guard let result = pendingResult else { return }
+        var images: [String: Data] = [:]
+        for capture in captures {
+            let pick = picks[capture.guide.id] ?? "none"
+            guard pick != "none",
+                  let jpeg = capture.candidates.first(where: { $0.slot == pick })?.jpeg else {
+                continue
+            }
+            images["\(capture.guide.id).jpg"] = jpeg
+        }
+        await buildDocument(result: result, picks: picks, images: images)
+        captures = []
+        pendingResult = nil
+    }
+
     func retry() async {
         guard let urlString = currentURLString else { reset(); return }
         await start(urlString: urlString)
@@ -151,5 +226,7 @@ final class AppModel {
         currentURLString = nil
         pendingDuration = nil
         profileOverride = nil
+        captures = []
+        pendingResult = nil
     }
 }

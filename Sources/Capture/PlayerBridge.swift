@@ -125,4 +125,18 @@ final class PlayerBridge: NSObject, ObservableObject {
         }
         return data
     }
+
+    /// 캡처 세션 시작: 플레이어 상태 저장 후 음소거·정지 (프레임 디코딩 유도 포함)
+    func beginCaptureSession() async throws {
+        do {
+            _ = try await callJS("return await window.__clipnote.captureBegin();", timeout: 8)
+        } catch {
+            throw PlayerError.captureFailed("세션 시작 실패: \(error)")
+        }
+    }
+
+    /// 캡처 세션 종료: currentTime·muted·재생 상태 복원 (실패해도 무시)
+    func endCaptureSession() async {
+        _ = try? await callJS("return await window.__clipnote.captureEnd();", timeout: 5)
+    }
 }

@@ -81,7 +81,26 @@ enum CaptureScript {
         v.pause();
         return true;
       }
-      window.__clipnote = { waitMeta, capture, prime };
+      async function captureBegin() {   // content.js 패턴: 상태 저장 → 음소거·정지
+        const v = video();
+        if (!v) throw new Error("no player");
+        window.__cnSaved = { muted: v.muted, paused: v.paused, t: v.currentTime };
+        v.muted = true;
+        try { await v.play(); } catch (e) {}
+        await sleep(300);
+        v.pause();
+        return true;
+      }
+      async function captureEnd() {     // 원위치 복원
+        const v = video();
+        const s = window.__cnSaved;
+        if (!v || !s) return false;
+        v.currentTime = s.t;
+        v.muted = s.muted;
+        if (!s.paused) { try { await v.play(); } catch (e) {} }
+        return true;
+      }
+      window.__clipnote = { waitMeta, capture, prime, captureBegin, captureEnd };
     })();
     """#
 }

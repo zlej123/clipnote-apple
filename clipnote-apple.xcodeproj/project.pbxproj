@@ -40,6 +40,7 @@
 		D07EAE4DA4B8E749703A6A21 /* CaptureScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D26C2AB7348347DACFC7E /* CaptureScript.swift */; };
 		DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63428D6C8CFA774A9F628412 /* PlayerBridge.swift */; };
 		E64E7CB20C1E29F76275F638 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566341E0C576E91DCB9F6D80 /* AppModel.swift */; };
+		ECA478199E0D15C7C24874DF /* CapturePipelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A801FF4295DCF414932918 /* CapturePipelineTests.swift */; };
 		F0927E072FF2FD35AC566BAD /* AnalysisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStoreTests.swift; sourceTree = "<group>"; };
 		A582DCBA84994547250330F9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B0785357617101FBE2328D1B /* ClipnoteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteAPI.swift; sourceTree = "<group>"; };
+		C1A801FF4295DCF414932918 /* CapturePipelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePipelineTests.swift; sourceTree = "<group>"; };
 		CBF47733217E898BADAED894 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		D4189D5DBCF03DF2C37B74CA /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
 		D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownBuilderGoldenTests.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */,
 				D4189D5DBCF03DF2C37B74CA /* AppModelTests.swift */,
 				59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */,
+				C1A801FF4295DCF414932918 /* CapturePipelineTests.swift */,
 				78A46F54889DC7794BFD06B8 /* ClipnoteAPITests.swift */,
 				9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */,
 				3D29DA080058AC8289743384 /* Fixtures */,
@@ -341,6 +344,7 @@
 				F0927E072FF2FD35AC566BAD /* AnalysisTests.swift in Sources */,
 				6C580F3FE81ECC56D479A8B7 /* AppModelTests.swift in Sources */,
 				70A5D8FB3F7FE9B4FCBD1984 /* CandidateTimesTests.swift in Sources */,
+				ECA478199E0D15C7C24874DF /* CapturePipelineTests.swift in Sources */,
 				86F6833E9BE61FD69D542D97 /* ClipnoteAPITests.swift in Sources */,
 				C92445F9BDBA7A3DE72BC97B /* DocumentStoreTests.swift in Sources */,
 				179A2A6579E244A3E00F6783 /* KeychainStoreTests.swift in Sources */,
