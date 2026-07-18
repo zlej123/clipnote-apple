@@ -32,7 +32,8 @@ final class AppModel {
     var stage: FlowStage = .idle
     var detectedProfile = "generic"
     var profileOverride: String?
-    /// E2E·공유 확장 진입처럼 사람이 확인 버튼을 누르지 않는 경로에서 readyToAnalyze를 자동 통과
+    /// E2E처럼 사람이 확인 버튼을 누르지 않는 경로에서 readyToAnalyze를 자동 통과.
+    /// 공유 확장 진입은 false 유지 — 사용자가 readyToAnalyze에서 프로파일 확인 후 시작한다.
     var autoContinue = false
 
     let bridge = PlayerBridge()

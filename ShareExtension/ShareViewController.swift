@@ -34,16 +34,18 @@ final class ShareViewController: UIViewController {
             finish("URL을 찾지 못했습니다")
             return
         }
+        let groupID = self.groupID
+        let urlKey = self.urlKey
         provider.loadItem(forTypeIdentifier: UTType.url.identifier) { [weak self] value, _ in
             let urlString = (value as? URL)?.absoluteString ?? (value as? String) ?? ""
             DispatchQueue.main.async {
+                guard let self else { return }   // 해제됐으면 시스템이 확장을 정리한다 — 빈 suiteName 쓰기 방지 (리뷰 반영)
                 guard YouTubeURL.videoID(from: urlString) != nil else {
-                    self?.finish("유튜브 영상 링크가 아닙니다")
+                    self.finish("유튜브 영상 링크가 아닙니다")
                     return
                 }
-                UserDefaults(suiteName: self?.groupID ?? "")?
-                    .set(urlString, forKey: self?.urlKey ?? "pendingURL")
-                self?.finish("저장됐습니다.\nclipnote를 열면 분석이 시작됩니다.")
+                UserDefaults(suiteName: groupID)?.set(urlString, forKey: urlKey)
+                self.finish("저장됐습니다.\nclipnote를 열면 분석이 시작됩니다.")
             }
         }
     }
