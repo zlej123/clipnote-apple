@@ -28,6 +28,22 @@ struct LocalImage: View {
     }
 }
 
+/// 메모리 JPEG 썸네일 (후보 선택 UI)
+struct JPEGImage: View {
+    let data: Data
+    var body: some View {
+        #if os(macOS)
+        if let image = NSImage(data: data) {
+            Image(nsImage: image).resizable().scaledToFit()
+        }
+        #else
+        if let image = UIImage(data: data) {
+            Image(uiImage: image).resizable().scaledToFit()
+        }
+        #endif
+    }
+}
+
 enum ExportHelper {
     /// 문서 폴더를 사용자가 고른 디렉토리 아래 <name>/으로 복사. 성공 시 nil, 실패 시 메시지.
     static func copyFolder(from source: URL, to directory: URL, name: String) -> String? {

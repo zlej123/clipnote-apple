@@ -46,7 +46,7 @@ struct AnalyzeFlowView: View {
         case .capturing(let current, let total):
             ProgressView("장면 캡처 중… \(current)/\(total)")
         case .picking:
-            Text("장면 선택 대기").foregroundStyle(.secondary)   // Task 12에서 픽커 표시로 교체
+            CandidatePickerView(model: model)
         case .building:
             ProgressView("문서 생성 중…")
         case .done(let meta):

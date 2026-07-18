@@ -21,6 +21,7 @@
 		55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */; };
 		58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20924CC388A5A71A968C279B /* PlayerWebView.swift */; };
 		60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */; };
+		63A73CFB7E75AEFCD159375E /* CandidatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF3886533D746433E25B83 /* CandidatePickerView.swift */; };
 		6971DA3494084729BACD0C58 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582DCBA84994547250330F9 /* SettingsView.swift */; };
 		6C580F3FE81ECC56D479A8B7 /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4189D5DBCF03DF2C37B74CA /* AppModelTests.swift */; };
 		70A5D8FB3F7FE9B4FCBD1984 /* CandidateTimesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */; };
@@ -68,6 +69,7 @@
 		3656C1A46AF2A2255D46BA1B /* MustacheLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MustacheLite.swift; sourceTree = "<group>"; };
 		3D29DA080058AC8289743384 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fixtures; path = Tests/Fixtures; sourceTree = SOURCE_ROOT; };
 		422D26C2AB7348347DACFC7E /* CaptureScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureScript.swift; sourceTree = "<group>"; };
+		4CEF3886533D746433E25B83 /* CandidatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatePickerView.swift; sourceTree = "<group>"; };
 		4F537FF3C92D7F959A828FD0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		566341E0C576E91DCB9F6D80 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		5901F527D1FE582F9DC5370A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				02DF4E4D457ECB0DEAD6EB7C /* AnalyzeFlowView.swift */,
+				4CEF3886533D746433E25B83 /* CandidatePickerView.swift */,
 				2D02F2EB91181BAE3E0F996D /* DocumentView.swift */,
 				4F537FF3C92D7F959A828FD0 /* HomeView.swift */,
 				A582DCBA84994547250330F9 /* SettingsView.swift */,
@@ -316,6 +319,7 @@
 				3B3BE03D253C461CBED7F56F /* Analysis.swift in Sources */,
 				BBB3B01E75059040AB8D5D0E /* AnalyzeFlowView.swift in Sources */,
 				E64E7CB20C1E29F76275F638 /* AppModel.swift in Sources */,
+				63A73CFB7E75AEFCD159375E /* CandidatePickerView.swift in Sources */,
 				75D14BA22DA228CF3A4CBBA1 /* CandidateTimes.swift in Sources */,
 				D07EAE4DA4B8E749703A6A21 /* CaptureScript.swift in Sources */,
 				00E1D0ECD04ABCFD654CDB86 /* ClipnoteAPI.swift in Sources */,
