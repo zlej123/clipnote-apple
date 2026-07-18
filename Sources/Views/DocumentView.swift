@@ -76,9 +76,12 @@ struct DocumentView: View {
             if let pick = document.picks[guide.id], pick != "none",
                FileManager.default.fileExists(atPath: imageURL.path) {
                 LocalImage(url: imageURL).frame(maxHeight: 240)
-            } else if let ts = guide.bestVisualTimestamp {
-                Link("▶ 영상 \(MarkdownBuilder.hms(ts))에서 직접 확인",
-                     destination: URL(string: "https://youtu.be/\(document.meta.videoId)?t=\(ts)")!)
+            } else {
+                // md(코어 패리티)와 정렬: timestamp가 없어도 영상 링크는 항상 제공한다 (리뷰 반영)
+                let ts = guide.bestVisualTimestamp
+                Link(ts.map { "▶ 영상 \(MarkdownBuilder.hms($0))에서 직접 확인" } ?? "▶ 영상에서 직접 확인",
+                     destination: URL(string: ts.map { "https://youtu.be/\(document.meta.videoId)?t=\($0)" }
+                                      ?? "https://youtu.be/\(document.meta.videoId)")!)
                     .font(.callout)
             }
         }
