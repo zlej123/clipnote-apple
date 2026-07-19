@@ -17,6 +17,7 @@
 		25B6A500536A8B66C8FC0570 /* YouTubeURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B65C52C1E88D7F735C6E0 /* YouTubeURLTests.swift */; };
 		2EF122CBA49C1B36CB19F374 /* MustacheLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */; };
 		30DC30B5CFE165D9DDA89017 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 3D29DA080058AC8289743384 /* Fixtures */; };
+		36F1810B03F0FDA6D7F8B9F8 /* NotionExporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F182CF3140CCA95E06D47E /* NotionExporterTests.swift */; };
 		3B3BE03D253C461CBED7F56F /* Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA983299132DF09EDDF81 /* Analysis.swift */; };
 		4D47FD5834FDE5C3E8DE31E7 /* NotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FBEE3BE432EBB96724485F /* NotionAPI.swift */; };
 		55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */; };
@@ -26,6 +27,7 @@
 		60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */; };
 		63A73CFB7E75AEFCD159375E /* CandidatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF3886533D746433E25B83 /* CandidatePickerView.swift */; };
 		6971DA3494084729BACD0C58 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582DCBA84994547250330F9 /* SettingsView.swift */; };
+		6B64AE3D27DA047865152E20 /* NotionExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930EF6BF399EA028A860AD09 /* NotionExporter.swift */; };
 		6C580F3FE81ECC56D479A8B7 /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4189D5DBCF03DF2C37B74CA /* AppModelTests.swift */; };
 		70A5D8FB3F7FE9B4FCBD1984 /* CandidateTimesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */; };
 		73BC5151FDDA4ECF48BDA83C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F537FF3C92D7F959A828FD0 /* HomeView.swift */; };
@@ -120,11 +122,13 @@
 		7EAC7C06E40745B83B2ABD5B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		7FF25858BF4FE970AF728713 /* ClipnoteShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipnoteShare.entitlements; sourceTree = "<group>"; };
 		82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeCaptureView.swift; sourceTree = "<group>"; };
+		930EF6BF399EA028A860AD09 /* NotionExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionExporter.swift; sourceTree = "<group>"; };
 		95A9058A08C2CB93E411284E /* CandidateTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTimes.swift; sourceTree = "<group>"; };
 		99048B61EEFA2BFFC865C74E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9ABBD420677B02D93F6AC1F9 /* Clipnote-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Clipnote-iOS.entitlements"; sourceTree = "<group>"; };
 		9D6A6A896A1900F05F68DAF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStoreTests.swift; sourceTree = "<group>"; };
+		A3F182CF3140CCA95E06D47E /* NotionExporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionExporterTests.swift; sourceTree = "<group>"; };
 		A4E278FA85B2D40271C69E4F /* NotionBlockBuilderGoldenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionBlockBuilderGoldenTests.swift; sourceTree = "<group>"; };
 		A582DCBA84994547250330F9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B0785357617101FBE2328D1B /* ClipnoteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteAPI.swift; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 				3656C1A46AF2A2255D46BA1B /* MustacheLite.swift */,
 				E1FBEE3BE432EBB96724485F /* NotionAPI.swift */,
 				BFFA10C56D0780CFAD9FC1E3 /* NotionBlockBuilder.swift */,
+				930EF6BF399EA028A860AD09 /* NotionExporter.swift */,
 				7EAC7C06E40745B83B2ABD5B /* Settings.swift */,
 			);
 			path = Services;
@@ -253,6 +258,7 @@
 				1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */,
 				1C24FFFD364DDD8A8A6526D9 /* NotionAPITests.swift */,
 				A4E278FA85B2D40271C69E4F /* NotionBlockBuilderGoldenTests.swift */,
+				A3F182CF3140CCA95E06D47E /* NotionExporterTests.swift */,
 				4AAFC864ADAC47D29A940439 /* NotionPageIDTests.swift */,
 				E95074CB2F387CE12D43E8DA /* SettingsTests.swift */,
 				5903F609B4D280036CDE8BB5 /* ShareInboxTests.swift */,
@@ -421,6 +427,7 @@
 				B048E7331E8BB4ACF80A470F /* MustacheLite.swift in Sources */,
 				4D47FD5834FDE5C3E8DE31E7 /* NotionAPI.swift in Sources */,
 				6011C1BFACD3602B65871E4C /* NotionBlockBuilder.swift in Sources */,
+				6B64AE3D27DA047865152E20 /* NotionExporter.swift in Sources */,
 				7AC948FF15C57B6DEDA6C27A /* NotionPageID.swift in Sources */,
 				DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */,
 				58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */,
@@ -448,6 +455,7 @@
 				2EF122CBA49C1B36CB19F374 /* MustacheLiteTests.swift in Sources */,
 				C913FFEA8546D0AE11798C44 /* NotionAPITests.swift in Sources */,
 				E66040DE1B47A827360800DE /* NotionBlockBuilderGoldenTests.swift in Sources */,
+				36F1810B03F0FDA6D7F8B9F8 /* NotionExporterTests.swift in Sources */,
 				827402093F5BA32ACD7E668F /* NotionPageIDTests.swift in Sources */,
 				A3FDDC1878A6753D910679CD /* SettingsTests.swift in Sources */,
 				763938967BEBD5D24E9533CC /* ShareInboxTests.swift in Sources */,
