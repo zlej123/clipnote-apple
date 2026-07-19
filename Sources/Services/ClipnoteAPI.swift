@@ -80,6 +80,41 @@ final class ClipnoteAPI: Sendable {
                              analysis: envelope.analysis, rawAnalysis: rawAnalysis)
     }
 
+    /// 원탭 이상 신고 — X-Gemini-Key 불필요, analysis는 rawAnalysis 원본 병합
+    func submitReport(_ report: IssueReport) async throws {
+        var request = URLRequest(url: baseURL.appending(path: "/v1/reports"))
+        request.httpMethod = "POST"
+        request.timeoutInterval = 30
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let analysisObject = (try? JSONSerialization.jsonObject(with: report.rawAnalysis)) ?? [String: Any]()
+        let body: [String: Any] = [
+            "url": report.url,
+            "video_id": report.videoId,
+            "reason": report.reason.rawValue,
+            "note": report.note,
+            "profile": report.profile,
+            "language": report.language,
+            "analysis": analysisObject,
+            "picks": report.picks,
+            "client": report.client,
+        ]
+        request.httpBody = try JSONSerialization.data(withJSONObject: body)
+
+        let data: Data
+        let response: URLResponse
+        do {
+            (data, response) = try await session.data(for: request)
+        } catch {
+            throw ClipnoteAPIError.network(String(describing: error))
+        }
+        guard let http = response as? HTTPURLResponse else {
+            throw ClipnoteAPIError.invalidResponse
+        }
+        guard (200...299).contains(http.statusCode) else {
+            throw ClipnoteAPIError.server(http.statusCode, Self.detail(from: data))
+        }
+    }
+
     /// FastAPI 에러 body {"detail": <string|object>}에서 사람이 읽을 문자열 추출
     private static func detail(from data: Data) -> String {
         guard let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any],

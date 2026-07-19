@@ -108,4 +108,38 @@ struct ClipnoteAPITests {
             guard case .network = error else { Issue.record("wrong case: \(error)"); return }
         }
     }
+
+    @Test func submitReportPostsPayloadWithoutKey() async throws {
+        defer { reset() }
+        ClipnoteAPIStub.shared.handler = { _ in (200, Data(#"{"status": "ok"}"#.utf8)) }
+        let raw = try JSONSerialization.data(withJSONObject: ["title": "t", "_model": "m"])
+        let report = IssueReport(
+            url: "https://m.youtube.com/watch?v=GziiD4XqCpc", videoId: "GziiD4XqCpc",
+            reason: .candidates, note: "메모", profile: "recipe", language: "ko",
+            rawAnalysis: raw, picks: ["vg-1": "none"], client: "apple/test")
+        try await makeAPI().submitReport(report)
+
+        let request = try #require(ClipnoteAPIStub.shared.capturedRequest)
+        #expect(request.url?.path == "/v1/reports")
+        #expect(request.value(forHTTPHeaderField: "X-Gemini-Key") == nil)   // 키 불필요 경로
+        let body = try JSONSerialization.jsonObject(
+            with: try #require(ClipnoteAPIStub.shared.capturedBody)) as! [String: Any]
+        #expect(body["reason"] as? String == "candidates")
+        #expect((body["analysis"] as? [String: Any])?["_model"] as? String == "m")   // 원본 병합
+        #expect((body["picks"] as? [String: String]) == ["vg-1": "none"])
+    }
+
+    @Test func submitReportMapsServerFailure() async throws {
+        defer { reset() }
+        ClipnoteAPIStub.shared.handler = { _ in (500, Data(#"{"detail": "disk"}"#.utf8)) }
+        let report = IssueReport(
+            url: "u", videoId: "v", reason: .other, note: "", profile: "generic",
+            language: "ko", rawAnalysis: Data("{}".utf8), picks: [:], client: "apple/test")
+        do {
+            try await makeAPI().submitReport(report)
+            Issue.record("should throw")
+        } catch let error as ClipnoteAPIError {
+            guard case .server(500, _) = error else { Issue.record("wrong: \(error)"); return }
+        }
+    }
 }

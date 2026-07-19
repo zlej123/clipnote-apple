@@ -223,6 +223,29 @@ final class AppModel {
         pendingResult = nil
     }
 
+    /// 픽커 화면의 원탭 신고 — pendingResult 기반. 성공 nil, 실패 시 사용자 메시지 반환.
+    func submitIssueReport(reason: ReportReason, note: String,
+                           picks: [String: String]) async -> String? {
+        guard let result = pendingResult else { return "신고할 분석 정보가 없습니다" }
+        guard let serverURL = URL(string: defaults.string(forKey: Settings.serverURLKey)
+                                  ?? Settings.defaultServerURL) else {
+            return "서버 URL이 올바르지 않습니다 — 설정을 확인하세요"
+        }
+        let report = IssueReport(
+            url: "https://m.youtube.com/watch?v=\(result.videoId)",
+            videoId: result.videoId, reason: reason, note: note,
+            profile: result.analysis.profile ?? profile,
+            language: result.analysis.outputLanguage
+                ?? defaults.string(forKey: Settings.languageKey) ?? Settings.defaultLanguage,
+            rawAnalysis: result.rawAnalysis, picks: picks, client: IssueReport.clientTag)
+        do {
+            try await makeAPI(serverURL).submitReport(report)
+            return nil
+        } catch {
+            return (error as? LocalizedError)?.errorDescription ?? "신고 전송에 실패했습니다"
+        }
+    }
+
     func retry() async {
         guard let urlString = currentURLString else { reset(); return }
         await start(urlString: urlString)

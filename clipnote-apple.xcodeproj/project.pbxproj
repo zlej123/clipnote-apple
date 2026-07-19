@@ -21,10 +21,12 @@
 		36F1810B03F0FDA6D7F8B9F8 /* NotionExporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F182CF3140CCA95E06D47E /* NotionExporterTests.swift */; };
 		3B3BE03D253C461CBED7F56F /* Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEA983299132DF09EDDF81 /* Analysis.swift */; };
 		4D47FD5834FDE5C3E8DE31E7 /* NotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FBEE3BE432EBB96724485F /* NotionAPI.swift */; };
+		4FBD255AE895C39714CF10CA /* ReportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0897DD5AB26F38AC3E819D09 /* ReportSheet.swift */; };
 		55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */; };
 		58C2E2C5F997DC2422820D2B /* YouTubeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A890E9DC0157F018709067 /* YouTubeURL.swift */; };
 		58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20924CC388A5A71A968C279B /* PlayerWebView.swift */; };
 		5A67E0C5D6031C39C929420E /* NotionExportTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF1A6FB0A839B89FEB9254D /* NotionExportTrackerTests.swift */; };
+		5A958E6638DFEE06CACB89B8 /* IssueReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5E131AC524F1DD0F9D4F44 /* IssueReport.swift */; };
 		6011C1BFACD3602B65871E4C /* NotionBlockBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA10C56D0780CFAD9FC1E3 /* NotionBlockBuilder.swift */; };
 		60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */; };
 		63A73CFB7E75AEFCD159375E /* CandidatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF3886533D746433E25B83 /* CandidatePickerView.swift */; };
@@ -95,7 +97,9 @@
 		02A890E9DC0157F018709067 /* YouTubeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeURL.swift; sourceTree = "<group>"; };
 		02DF4E4D457ECB0DEAD6EB7C /* AnalyzeFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeFlowView.swift; sourceTree = "<group>"; };
 		086E183F0701CE008CB3614E /* skill-core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "skill-core"; path = "Resources/skill-core"; sourceTree = SOURCE_ROOT; };
+		0897DD5AB26F38AC3E819D09 /* ReportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSheet.swift; sourceTree = "<group>"; };
 		1005F4C611062AAA77ECDEEE /* KeychainStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStoreTests.swift; sourceTree = "<group>"; };
+		1B5E131AC524F1DD0F9D4F44 /* IssueReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueReport.swift; sourceTree = "<group>"; };
 		1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MustacheLiteTests.swift; sourceTree = "<group>"; };
 		1C24FFFD364DDD8A8A6526D9 /* NotionAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionAPITests.swift; sourceTree = "<group>"; };
 		1C53CA9270B06BE86C9EF3D0 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				4CEF3886533D746433E25B83 /* CandidatePickerView.swift */,
 				2D02F2EB91181BAE3E0F996D /* DocumentView.swift */,
 				4F537FF3C92D7F959A828FD0 /* HomeView.swift */,
+				0897DD5AB26F38AC3E819D09 /* ReportSheet.swift */,
 				A582DCBA84994547250330F9 /* SettingsView.swift */,
 				CBF47733217E898BADAED894 /* Support.swift */,
 			);
@@ -231,6 +236,7 @@
 			children = (
 				26CEA983299132DF09EDDF81 /* Analysis.swift */,
 				95A9058A08C2CB93E411284E /* CandidateTimes.swift */,
+				1B5E131AC524F1DD0F9D4F44 /* IssueReport.swift */,
 				5B5C20A9BA66575DBCC66A67 /* NotionPageID.swift */,
 				02A890E9DC0157F018709067 /* YouTubeURL.swift */,
 			);
@@ -428,6 +434,7 @@
 				B9CDC77070A7808B89E95A16 /* DocumentStore.swift in Sources */,
 				BF49CC80F86A52B3F773CF24 /* DocumentView.swift in Sources */,
 				73BC5151FDDA4ECF48BDA83C /* HomeView.swift in Sources */,
+				5A958E6638DFEE06CACB89B8 /* IssueReport.swift in Sources */,
 				7B5BB2F263CBE79E6E74AAF4 /* KeychainStore.swift in Sources */,
 				093FC8CF548AF0FC0D104685 /* MarkdownBuilder.swift in Sources */,
 				B048E7331E8BB4ACF80A470F /* MustacheLite.swift in Sources */,
@@ -437,6 +444,7 @@
 				7AC948FF15C57B6DEDA6C27A /* NotionPageID.swift in Sources */,
 				DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */,
 				58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */,
+				4FBD255AE895C39714CF10CA /* ReportSheet.swift in Sources */,
 				9B62AFE5AE59A2423BF212A6 /* Settings.swift in Sources */,
 				6971DA3494084729BACD0C58 /* SettingsView.swift in Sources */,
 				DAD28AD8CB9ACAF3B4C7F432 /* ShareInbox.swift in Sources */,

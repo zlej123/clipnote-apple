@@ -6,6 +6,7 @@ struct DocumentView: View {
     @State private var exportMessage: String?
     @State private var exportingNotion = false
     @State private var notionPageURL: URL?
+    @State private var reporting = false
 
     private var analysis: Analysis { document.analysis }
     private var isRecipe: Bool { document.meta.profile == "recipe" }
@@ -61,6 +62,11 @@ struct DocumentView: View {
                     Label("Notion으로 보내기", systemImage: "arrow.up.doc")
                 }
                 .disabled(exportingNotion)
+                Button {
+                    reporting = true
+                } label: {
+                    Label("문서가 이상해요", systemImage: "flag")
+                }
             }
         }
         .fileImporter(isPresented: $pickingFolder, allowedContentTypes: [.folder]) { result in
@@ -68,6 +74,11 @@ struct DocumentView: View {
                 exportMessage = ExportHelper.copyFolder(
                     from: document.folder, to: directory, name: document.meta.id)
                     ?? "저장 완료: \(directory.lastPathComponent)/\(document.meta.id)"
+            }
+        }
+        .sheet(isPresented: $reporting) {
+            ReportSheet { reason, note in
+                await submitReport(reason: reason, note: note)
             }
         }
     }
@@ -137,6 +148,28 @@ struct DocumentView: View {
                     ?? "Notion 내보내기에 실패했습니다"
             }
             exportingNotion = false
+        }
+    }
+
+    private func submitReport(reason: ReportReason, note: String) async -> String? {
+        guard let serverURL = URL(string: UserDefaults.standard.string(forKey: Settings.serverURLKey)
+                                  ?? Settings.defaultServerURL) else {
+            return "서버 URL이 올바르지 않습니다 — 설정을 확인하세요"
+        }
+        guard let raw = try? Data(contentsOf:
+            document.folder.appendingPathComponent("analysis.json")) else {
+            return "분석 원본을 읽지 못했습니다"
+        }
+        let report = IssueReport(
+            url: "https://m.youtube.com/watch?v=\(document.meta.videoId)",
+            videoId: document.meta.videoId, reason: reason, note: note,
+            profile: document.meta.profile, language: document.meta.language,
+            rawAnalysis: raw, picks: document.picks, client: IssueReport.clientTag)
+        do {
+            try await ClipnoteAPI(baseURL: serverURL).submitReport(report)
+            return nil
+        } catch {
+            return (error as? LocalizedError)?.errorDescription ?? "신고 전송에 실패했습니다"
         }
     }
 }

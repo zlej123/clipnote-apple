@@ -4,6 +4,7 @@ import SwiftUI
 struct CandidatePickerView: View {
     @Bindable var model: AppModel
     @State private var picks: [String: String] = [:]
+    @State private var reporting = false
 
     var body: some View {
         ScrollView {
@@ -18,8 +19,20 @@ struct CandidatePickerView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .frame(maxWidth: .infinity)
+                Button {
+                    reporting = true
+                } label: {
+                    Label("후보가 이상해요", systemImage: "flag")
+                }
+                .font(.callout)
+                .frame(maxWidth: .infinity)
             }
             .padding(.vertical)
+        }
+        .sheet(isPresented: $reporting) {
+            ReportSheet { reason, note in
+                await model.submitIssueReport(reason: reason, note: note, picks: picks)
+            }
         }
         .onAppear { if picks.isEmpty { picks = model.defaultPicks() } }
     }
