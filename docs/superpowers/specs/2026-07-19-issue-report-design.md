@@ -42,3 +42,13 @@
 ## 5. 프라이버시
 
 전송은 사용자 버튼 탭 시에만. 시트에 전송 내용 고지 상시 표시. 서버 저장은 로컬 파일(개인 서버) — 외부 서비스 전송 없음.
+
+## 6. (승인 확장) GitHub 이슈 브리지 — 2026-07-19
+
+신고를 비공개 repo **zlej123/clipnote-reports**의 이슈로도 자동 생성 (공개 코어 repo가 아닌 이유: 시청 영상 URL·메모의 공개 노출 방지 — 사용자 결정).
+
+- 서버가 JSONL append **후** 이슈 생성 시도. **JSONL이 원천 데이터** — 이슈 생성 실패는 신고 실패가 아니며(로그만 남기고 200 유지), 응답에 `"github": "ok" | "skipped" | "failed"` 필드로 상태 노출.
+- 전송 수단: **gh CLI subprocess** (`gh api repos/<repo>/issues`) — 사용자의 gh 키체인 인증 재사용, 서버에 토큰 저장 없음. gh 부재/미인증이면 skipped.
+- **opt-in**: 환경변수 `CLIPNOTE_REPORTS_REPO`(예: `zlej123/clipnote-reports`)가 설정된 경우에만 시도 — 공개 서버 코드의 기본 동작은 JSONL만.
+- 이슈 형식: 제목 `[report:<reason>] <analysis title> (<video_id>)`, 본문 = 사유 라벨·영상 링크·메모·프로파일/언어·client + `<details>`로 접힌 분석 JSON, 라벨 `report`, `report:<reason>`.
+- 검증: subprocess.run 모킹 — 정상 페이로드(제목/본문/라벨), env 미설정 시 skipped(호출 0회), gh 실패 시에도 200+failed. 배포 환경(gh 없는 서버)용 토큰 방식은 v2 기록.
