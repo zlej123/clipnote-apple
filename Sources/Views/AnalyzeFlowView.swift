@@ -4,11 +4,22 @@ struct AnalyzeFlowView: View {
     @Bindable var model: AppModel
     @Environment(\.dismiss) private var dismiss
 
+    /// 캡처가 끝난 단계(선택·조립·완료)에선 플레이어를 숨겨 화면 전체를 내준다 (UX 피드백 반영).
+    /// bridge가 WKWebView를 소유하므로 뷰 트리에서 빠져도 상태는 유지된다.
+    private var showsPlayer: Bool {
+        switch model.stage {
+        case .picking, .building, .done: false
+        default: true
+        }
+    }
+
     var body: some View {
         VStack(spacing: 14) {
-            PlayerWebView(bridge: model.bridge)
-                .frame(minHeight: 230)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
+            if showsPlayer {
+                PlayerWebView(bridge: model.bridge)
+                    .frame(minHeight: 230)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
             stageView
             Spacer()
         }

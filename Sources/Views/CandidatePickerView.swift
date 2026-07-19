@@ -32,7 +32,8 @@ struct CandidatePickerView: View {
                 Label("캡처 실패 — 링크로 대체됩니다", systemImage: "link")
                     .font(.callout).foregroundStyle(.orange)
             } else {
-                HStack(spacing: 8) {
+                // 적응형 그리드(아이폰 2열) — 가로 4분할 대비 썸네일 약 2배 (UX 피드백 반영)
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 8)], spacing: 8) {
                     ForEach(capture.candidates, id: \.slot) { candidate in
                         candidateCell(guideId: capture.guide.id, candidate: candidate)
                     }
@@ -58,6 +59,16 @@ struct CandidatePickerView: View {
                 }
             }
             .buttonStyle(.plain)
+            .contextMenu {
+                Button("이 장면 선택") { picks[guideId] = candidate.slot }
+            } preview: {
+                // 길게 누르면 원본 크기 확대 미리보기 (비-resizable Image = 고유 크기 기준)
+                #if os(macOS)
+                if let image = NSImage(data: jpeg) { Image(nsImage: image) }
+                #else
+                if let image = UIImage(data: jpeg) { Image(uiImage: image) }
+                #endif
+            }
         }
     }
 
@@ -68,7 +79,7 @@ struct CandidatePickerView: View {
             VStack {
                 Text("부적합\n링크 사용").font(.caption).multilineTextAlignment(.center)
             }
-            .frame(minWidth: 64, minHeight: 48)
+            .frame(maxWidth: .infinity, minHeight: 64)
             .overlay(RoundedRectangle(cornerRadius: 6).stroke(
                 picks[guideId] == "none" ? Color.red : Color.secondary.opacity(0.3),
                 lineWidth: picks[guideId] == "none" ? 3 : 1))
