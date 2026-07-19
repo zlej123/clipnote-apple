@@ -7,7 +7,7 @@ import Foundation
 struct AppModelTests {
     private func makeModel(root: URL, linkMode: Bool = false) -> AppModel {
         let config = URLSessionConfiguration.ephemeral
-        config.protocolClasses = [StubURLProtocol.self]
+        config.protocolClasses = [AppModelStub.self]
         let session = URLSession(configuration: config)
         let keychain = KeychainStore(service: "clipnote.tests.appmodel-\(UUID().uuidString)")
         try? keychain.save("test-key")
@@ -36,8 +36,8 @@ struct AppModelTests {
         // linkMode: true — Task 11이 캡처 분기를 추가해도 이 테스트는 링크 경로를 검증한다
         let model = makeModel(root: root, linkMode: true)
         let fixture = try Bundle.fixtureData("analyze-response")
-        StubURLProtocol.handler = { _ in (200, fixture) }
-        defer { StubURLProtocol.handler = nil }
+        AppModelStub.shared.handler = { _ in (200, fixture) }
+        defer { AppModelStub.shared.handler = nil }
 
         await model.performAnalysis(videoId: "dQw4w9WgXcQ", duration: 90)
 
@@ -56,8 +56,8 @@ struct AppModelTests {
             .appendingPathComponent("clipnote-appmodel-\(UUID().uuidString)")
         defer { try? FileManager.default.removeItem(at: root) }
         let model = makeModel(root: root)
-        StubURLProtocol.handler = { _ in (429, Data(#"{"detail": "quota"}"#.utf8)) }
-        defer { StubURLProtocol.handler = nil }
+        AppModelStub.shared.handler = { _ in (429, Data(#"{"detail": "quota"}"#.utf8)) }
+        defer { AppModelStub.shared.handler = nil }
 
         await model.performAnalysis(videoId: "dQw4w9WgXcQ", duration: 90)
 

@@ -49,7 +49,7 @@ struct NotionExporterTests {
     }
 
     private func stub(recorder: Recorder, uploadFails: Bool = false) {
-        StubURLProtocol.handler = { request in
+        NotionExporterStub.shared.handler = { request in
             let path = request.url!.path
             recorder.record(path, request.bodyData)
             if path == "/v1/file_uploads" {
@@ -67,15 +67,13 @@ struct NotionExporterTests {
     }
     private func makeExporter() -> NotionExporter {
         let config = URLSessionConfiguration.ephemeral
-        config.protocolClasses = [StubURLProtocol.self]
+        config.protocolClasses = [NotionExporterStub.self]
         return NotionExporter(
             api: NotionAPI(token: "test-token", session: URLSession(configuration: config)),
             parentPageID: String(repeating: "0", count: 32))
     }
     private func reset() {
-        StubURLProtocol.handler = nil
-        StubURLProtocol.capturedRequest = nil
-        StubURLProtocol.capturedBody = nil
+        NotionExporterStub.shared.reset()
     }
 
     @Test func wiresPickedImageIntoImageBlock() async throws {

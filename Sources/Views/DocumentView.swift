@@ -112,17 +112,22 @@ struct DocumentView: View {
     }
 
     private func exportToNotion() {
+        notionPageURL = nil
         guard let token = try? KeychainStore.notionToken.load(), !token.isEmpty,
               let parent = NotionPageID.normalize(
                 UserDefaults.standard.string(forKey: Settings.notionParentPageKey) ?? "") else {
             exportMessage = "설정에서 Notion 토큰과 부모 페이지를 입력하세요"
             return
         }
+        guard NotionExportTracker.begin(document.meta.id) else {
+            exportMessage = "이 문서는 Notion 업로드가 진행 중입니다"
+            return
+        }
         exportingNotion = true
-        notionPageURL = nil
         let exporter = NotionExporter(api: NotionAPI(token: token), parentPageID: parent)
         let target = document
         Task {
+            defer { NotionExportTracker.end(target.meta.id) }
             do {
                 let url = try await exporter.export(document: target)
                 notionPageURL = url

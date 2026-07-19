@@ -40,3 +40,21 @@ final class NotionExporter: Sendable {
                    + page.id.replacingOccurrences(of: "-", with: ""))!
     }
 }
+
+/// 뷰 인스턴스가 재생성돼도 유지되는 진행 중 내보내기 추적 — 재진입 중복 방지 (최종 리뷰 반영).
+/// 백그라운드 완주는 보존한다(취소하지 않음): 뒤로가기 후에도 페이지는 만들어지고, 재탭만 막는다.
+@MainActor
+enum NotionExportTracker {
+    private(set) static var inFlight: Set<String> = []
+
+    /// 시작 시도 — 이미 진행 중이면 false
+    static func begin(_ documentID: String) -> Bool {
+        guard !inFlight.contains(documentID) else { return false }
+        inFlight.insert(documentID)
+        return true
+    }
+
+    static func end(_ documentID: String) {
+        inFlight.remove(documentID)
+    }
+}
