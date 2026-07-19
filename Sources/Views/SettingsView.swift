@@ -7,6 +7,10 @@ struct SettingsView: View {
     @State private var geminiKey = ""
     @State private var keySavedAt: Date?
     @State private var keySaveError: String?
+    @AppStorage(Settings.notionParentPageKey) private var notionParentPage = ""
+    @State private var notionToken = ""
+    @State private var notionSavedAt: Date?
+    @State private var notionSaveError: String?
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -58,11 +62,46 @@ struct SettingsView: View {
                 } header: { Text("clipnote 서버") } footer: {
                     Text("실기기에서는 Mac의 LAN IP를 입력하세요 (예: http://192.168.0.10:8787)")
                 }
+                Section {
+                    SecureField("Notion 통합 토큰", text: $notionToken)
+                        .textFieldStyle(.roundedBorder)
+                    Button("토큰 저장") {
+                        do {
+                            try KeychainStore.notionToken.save(
+                                notionToken.trimmingCharacters(in: .whitespacesAndNewlines))
+                            notionSaveError = nil
+                            notionSavedAt = Date()
+                        } catch {
+                            notionSavedAt = nil
+                            notionSaveError = "저장 실패 — 다시 시도해 주세요"
+                        }
+                    }
+                    .disabled(notionToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    if notionSavedAt != nil {
+                        Label("저장됨", systemImage: "checkmark.circle.fill")
+                            .foregroundStyle(.green).font(.callout)
+                    }
+                    if let notionSaveError {
+                        Label(notionSaveError, systemImage: "exclamationmark.triangle.fill")
+                            .foregroundStyle(.red).font(.callout)
+                    }
+                    TextField("부모 페이지 (URL 또는 ID 붙여넣기)", text: $notionParentPage)
+                        .textFieldStyle(.roundedBorder)
+                        .autocorrectionDisabled()
+                    Link("통합(integration) 만들기",
+                         destination: URL(string: "https://www.notion.so/my-integrations")!)
+                        .font(.callout)
+                } header: { Text("Notion 내보내기") } footer: {
+                    Text("통합을 만들고, 대상 페이지의 ··· 메뉴 → 연결에서 그 통합을 추가해야 업로드할 수 있습니다.")
+                }
             }
             .formStyle(.grouped)
             .navigationTitle("설정")
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("닫기") { dismiss() } } }
-            .onAppear { geminiKey = (try? KeychainStore.geminiKey.load()) ?? "" }
+            .onAppear {
+                geminiKey = (try? KeychainStore.geminiKey.load()) ?? ""
+                notionToken = (try? KeychainStore.notionToken.load()) ?? ""
+            }
         }
         #if os(macOS)
         .frame(minWidth: 460, minHeight: 420)

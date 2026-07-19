@@ -4,6 +4,8 @@ struct DocumentView: View {
     let document: SavedDocument
     @State private var pickingFolder = false
     @State private var exportMessage: String?
+    @State private var exportingNotion = false
+    @State private var notionPageURL: URL?
 
     private var analysis: Analysis { document.analysis }
     private var isRecipe: Bool { document.meta.profile == "recipe" }
@@ -30,6 +32,13 @@ struct DocumentView: View {
                 Link("출처: \(analysis.title) — clipnote로 생성",
                      destination: URL(string: "https://youtu.be/\(document.meta.videoId)")!)
                     .font(.footnote)
+                if exportingNotion {
+                    ProgressView("Notion 업로드 중…")
+                }
+                if let notionPageURL {
+                    Link("Notion에서 열기", destination: notionPageURL)
+                        .font(.callout)
+                }
                 if let exportMessage {
                     Text(exportMessage).font(.caption).foregroundStyle(.orange)
                 }
@@ -46,6 +55,12 @@ struct DocumentView: View {
                 Button { pickingFolder = true } label: {
                     Label("폴더로 저장", systemImage: "folder")
                 }
+                Button {
+                    exportToNotion()
+                } label: {
+                    Label("Notion으로 보내기", systemImage: "arrow.up.doc")
+                }
+                .disabled(exportingNotion)
             }
         }
         .fileImporter(isPresented: $pickingFolder, allowedContentTypes: [.folder]) { result in
@@ -94,5 +109,29 @@ struct DocumentView: View {
         let md = files.filter { $0.pathExtension == "md" }
         let jpgs = files.filter { $0.pathExtension == "jpg" }.sorted { $0.path < $1.path }
         return md + jpgs
+    }
+
+    private func exportToNotion() {
+        guard let token = try? KeychainStore.notionToken.load(), !token.isEmpty,
+              let parent = NotionPageID.normalize(
+                UserDefaults.standard.string(forKey: Settings.notionParentPageKey) ?? "") else {
+            exportMessage = "설정에서 Notion 토큰과 부모 페이지를 입력하세요"
+            return
+        }
+        exportingNotion = true
+        notionPageURL = nil
+        let exporter = NotionExporter(api: NotionAPI(token: token), parentPageID: parent)
+        let target = document
+        Task {
+            do {
+                let url = try await exporter.export(document: target)
+                notionPageURL = url
+                exportMessage = "Notion 업로드 완료"
+            } catch {
+                exportMessage = (error as? LocalizedError)?.errorDescription
+                    ?? "Notion 내보내기에 실패했습니다"
+            }
+            exportingNotion = false
+        }
     }
 }
