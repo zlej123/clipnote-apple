@@ -7,7 +7,8 @@ enum Settings {
     static let linkModeKey = "linkMode"
     static let notionParentPageKey = "notionParentPage"
 
-    static let defaultServerURL = "http://127.0.0.1:8787"
+    /// v1.3: 빈 값 = 서버 없이 Gemini 직접 호출(일반 사용자 기본). 개발 서버는 URL 입력.
+    static let defaultServerURL = ""
     static let defaultLanguage = "ko"
     static let maxGuides = 5   // v1 고정 (스펙 4.3)
 

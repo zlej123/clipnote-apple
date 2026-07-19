@@ -42,6 +42,7 @@ final class AppModel {
     private let store: DocumentStore
     private let defaults: UserDefaults
     private let makeAPI: (URL) -> ClipnoteAPI
+    private let makeGeminiAPI: () -> GeminiAPI
     private var currentVideoId: String?
     private var currentURLString: String?
     private var pendingDuration: Int?
@@ -53,13 +54,15 @@ final class AppModel {
     init(keychain: KeychainStore = .geminiKey,
          documentStore: DocumentStore? = nil,
          defaults: UserDefaults = .standard,
-         makeAPI: @escaping (URL) -> ClipnoteAPI = { ClipnoteAPI(baseURL: $0) }) {
+         makeAPI: @escaping (URL) -> ClipnoteAPI = { ClipnoteAPI(baseURL: $0) },
+         makeGeminiAPI: @escaping () -> GeminiAPI = { GeminiAPI() }) {
         self.keychain = keychain
         self.store = documentStore
             ?? ((try? DocumentStore.defaultRoot()).map(DocumentStore.init)
                 ?? DocumentStore(root: FileManager.default.temporaryDirectory))
         self.defaults = defaults
         self.makeAPI = makeAPI
+        self.makeGeminiAPI = makeGeminiAPI
     }
 
     var profile: String { profileOverride ?? detectedProfile }
@@ -118,20 +121,28 @@ final class AppModel {
             stage = .failed("설정에서 Gemini API 키를 입력하세요")
             return
         }
-        guard let serverURL = URL(string: defaults.string(forKey: Settings.serverURLKey)
-                                  ?? Settings.defaultServerURL) else {
-            stage = .failed("서버 URL이 올바르지 않습니다 — 설정을 확인하세요")
-            return
-        }
+        let serverURLString = (defaults.string(forKey: Settings.serverURLKey) ?? "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
         let gen = generation
         stage = .analyzing(duration: duration)
         do {
-            let result = try await makeAPI(serverURL).analyze(
-                videoURL: "https://m.youtube.com/watch?v=\(videoId)",
-                profile: profile,
-                language: defaults.string(forKey: Settings.languageKey) ?? Settings.defaultLanguage,
-                duration: duration,
-                geminiKey: key)
+            let videoURL = "https://m.youtube.com/watch?v=\(videoId)"
+            let language = defaults.string(forKey: Settings.languageKey) ?? Settings.defaultLanguage
+            let result: AnalyzeResult
+            if serverURLString.isEmpty {
+                // 직접 모드 (v1.3 기본): 서버 없이 Gemini 호출
+                result = try await makeGeminiAPI().analyze(
+                    videoURL: videoURL, profile: profile, language: language,
+                    duration: duration, geminiKey: key)
+            } else {
+                guard let serverURL = URL(string: serverURLString) else {
+                    stage = .failed("서버 URL이 올바르지 않습니다 — 설정을 확인하세요")
+                    return
+                }
+                result = try await makeAPI(serverURL).analyze(
+                    videoURL: videoURL, profile: profile, language: language,
+                    duration: duration, geminiKey: key)
+            }
             guard gen == generation else { return }   // 취소됨
             if linkMode {
                 await buildDocument(result: result, picks: [:], images: [:])

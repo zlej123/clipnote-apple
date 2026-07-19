@@ -7,7 +7,7 @@ struct SettingsTests {
         let suite = UserDefaults(suiteName: "clipnote.tests.settings")!
         suite.removePersistentDomain(forName: "clipnote.tests.settings")
         Settings.registerDefaults(suite)
-        #expect(suite.string(forKey: Settings.serverURLKey) == "http://127.0.0.1:8787")
+        #expect(suite.string(forKey: Settings.serverURLKey) == "")   // v1.3: 직접 모드 기본
         #expect(suite.string(forKey: Settings.languageKey) == "ko")
         #expect(suite.bool(forKey: Settings.linkModeKey) == false)
     }

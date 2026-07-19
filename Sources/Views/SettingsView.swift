@@ -83,8 +83,8 @@ struct SettingsView: View {
                     TextField("서버 URL", text: $serverURL)
                         .textFieldStyle(.roundedBorder)
                         .autocorrectionDisabled()
-                } header: { Text("clipnote 서버") } footer: {
-                    Text("실기기에서는 Mac의 LAN IP를 입력하세요 (예: http://192.168.0.10:8787)")
+                } header: { Text("clipnote 서버 (선택)") } footer: {
+                    Text("비워두면 서버 없이 Gemini를 직접 호출합니다(기본). 개발용 서버를 쓰려면 URL 입력 — 실기기에서는 Mac의 LAN IP (예: http://192.168.0.10:8787)")
                 }
                 Section {
                     SecureField("Notion 통합 토큰", text: $notionToken)

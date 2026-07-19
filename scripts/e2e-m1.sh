@@ -29,6 +29,7 @@ CONTAINER=$(xcrun simctl get_app_container "$SIM" $BUNDLE data)
 rm -rf "$CONTAINER/Documents/clipnote"
 
 SIMCTL_CHILD_CLIPNOTE_E2E_URL="$URL" SIMCTL_CHILD_CLIPNOTE_LINK_MODE=1 \
+  SIMCTL_CHILD_CLIPNOTE_SERVER_URL="http://127.0.0.1:8787" \
   xcrun simctl launch "$SIM" $BUNDLE
 
 DOC=""

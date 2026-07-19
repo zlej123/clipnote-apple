@@ -5,7 +5,8 @@ import Foundation
 @Suite(.serialized)
 @MainActor
 struct AppModelTests {
-    private func makeModel(root: URL, linkMode: Bool = false) -> AppModel {
+    private func makeModel(root: URL, linkMode: Bool = false,
+                           serverURL: String? = "http://stub.local:8787") -> AppModel {
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [AppModelStub.self]
         let session = URLSession(configuration: config)
@@ -14,12 +15,18 @@ struct AppModelTests {
         let defaults = UserDefaults(suiteName: "clipnote.tests.appmodel")!
         defaults.removePersistentDomain(forName: "clipnote.tests.appmodel")
         Settings.registerDefaults(defaults)
+        if let serverURL {
+            defaults.set(serverURL, forKey: Settings.serverURLKey)
+        } else {
+            defaults.set("", forKey: Settings.serverURLKey)
+        }
         defaults.set(linkMode, forKey: Settings.linkModeKey)
         return AppModel(
             keychain: keychain,
             documentStore: DocumentStore(root: root),
             defaults: defaults,
-            makeAPI: { ClipnoteAPI(baseURL: $0, session: session) })
+            makeAPI: { ClipnoteAPI(baseURL: $0, session: session) },
+            makeGeminiAPI: { GeminiAPI(session: session) })
     }
 
     @Test func detectsRecipeProfileFromTitle() {
@@ -65,6 +72,35 @@ struct AppModelTests {
             Issue.record("stage=\(model.stage)"); return
         }
         #expect(message.contains("한도"))
+    }
+
+    /// v1.3: 서버 URL이 비면 ClipnoteAPI(서버)가 아니라 GeminiAPI(직접)로 라우팅된다.
+    /// 핸들러 내부 #expect 금지(v1 교훈) — 요청을 캡처만 하고, 단언은 테스트 본문에서 한다.
+    @Test func emptyServerURLRoutesToDirectGemini() async throws {
+        let root = FileManager.default.temporaryDirectory
+            .appendingPathComponent("clipnote-appmodel-\(UUID().uuidString)")
+        defer { try? FileManager.default.removeItem(at: root) }
+        let model = makeModel(root: root, linkMode: true, serverURL: nil)   // 빈 URL → 직접
+        let analysisText: [String: Any] = [
+            "title": "직접", "summary": "s", "category": "c", "materials": [],
+            "steps": [["id": 1, "summary": "a", "detail": "b",
+                       "t_start": "0:05", "t_end": "0:20"]],
+            "visual_guides": [],
+        ]
+        let envelope: [String: Any] = ["candidates": [["content": ["parts": [
+            ["text": String(data: try JSONSerialization.data(withJSONObject: analysisText),
+                            encoding: .utf8)!]]]]]]
+        // GeminiAPITests(T1)와 동일 적응: 비Sendable [String: Any]를 @Sendable 핸들러 클로저 밖에서
+        // Data로 미리 직렬화해 Sendable 값만 캡처(Swift 6 엄격 동시성이 강제, 동작은 동일).
+        let envelopeData = try JSONSerialization.data(withJSONObject: envelope)
+        AppModelStub.shared.handler = { _ in (200, envelopeData) }
+        defer { AppModelStub.shared.handler = nil }
+
+        await model.performAnalysis(videoId: "dQw4w9WgXcQ", duration: 90)
+
+        guard case .done = model.stage else { Issue.record("stage=\(model.stage)"); return }
+        // 직접 모드 증명: 요청이 서버가 아니라 Gemini 호스트로 갔다.
+        #expect(AppModelStub.shared.capturedRequest?.url?.host == "generativelanguage.googleapis.com")
     }
 
     @Test func startRejectsInvalidURLWithoutTouchingPlayer() async {

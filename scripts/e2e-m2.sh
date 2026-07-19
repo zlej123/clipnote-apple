@@ -31,7 +31,9 @@ xcrun simctl terminate "$SIM" $BUNDLE 2>/dev/null || true
 CONTAINER=$(xcrun simctl get_app_container "$SIM" $BUNDLE data)
 rm -rf "$CONTAINER/Documents/clipnote"
 
-SIMCTL_CHILD_CLIPNOTE_E2E_URL="$URL" xcrun simctl launch "$SIM" $BUNDLE
+SIMCTL_CHILD_CLIPNOTE_E2E_URL="$URL" \
+  SIMCTL_CHILD_CLIPNOTE_SERVER_URL="http://127.0.0.1:8787" \
+  xcrun simctl launch "$SIM" $BUNDLE
 
 DOC=""
 for i in $(seq 1 90); do
