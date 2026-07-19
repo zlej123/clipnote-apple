@@ -3,6 +3,7 @@
 영상을 문서로, 레시피로, 사용매뉴얼로.
 유튜브 how-to 영상을 단계별 문서로 만들고, "한입 크기" 같은 애매한 표현마다
 실제 프레임(사용자가 선택)이나 타임스탬프 링크를 첨부하는 SwiftUI 앱 (iOS/iPadOS/macOS).
+완성된 문서는 공유시트·폴더 저장 외에 Notion 페이지로도 직접 내보낼 수 있다(사용자 통합 토큰).
 
 [clipnote](https://github.com/zlej123/clipnote) 생태계의 Apple 클라이언트 —
 분석은 [clipnote-server](https://github.com/zlej123/clipnote-server)(BYOK, 사용자 Gemini 키),
@@ -27,6 +28,7 @@
 - `scripts/stub-server.py` — /v1/analyze 스텁 (fixture 응답)
 - `scripts/sync-assets.sh` — ../clipnote skill-core 템플릿 재복사 (갱신 시 make-golden.py 재실행)
 - `scripts/make-golden.py` — 코어 render.py로 골든 기대 출력 재생성
+- `scripts/make-notion-golden.py` — 코어 build_notion_blocks로 Notion 블록 골든 재생성
 - `scripts/spike-verify.sh` — M0 캡처 검증
 
 ## 문서
