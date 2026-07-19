@@ -75,6 +75,12 @@ final class AppModel {
     func deleteDocument(id: String) { try? store.delete(id: id) }
 
     func start(urlString: String) async {
+        // 재진입 무효화: 진행 중 플로우(캡처 루프 포함)를 이 시점에 stale로 만든다 (최종 리뷰 Critical 1).
+        // 공유 픽업·새 URL 시작이 기존 플로우 위에 겹치는 경로를 봉인하고, retry()의 세대 미증가도 함께 해소.
+        generation += 1
+        captures = []
+        pendingResult = nil
+        currentURLString = urlString   // 키 가드보다 앞 — 진입 전 실패도 retry로 복구 가능 (Important 3)
         guard let videoId = YouTubeURL.videoID(from: urlString) else {
             stage = .failed("유튜브 URL이 아닙니다 — watch/youtu.be/shorts 링크를 붙여넣어 주세요")
             return
@@ -84,12 +90,11 @@ final class AppModel {
             return
         }
         currentVideoId = videoId
-        currentURLString = urlString
         let gen = generation
         stage = .loadingPlayer
         bridge.load(videoID: videoId)
         do {
-            let meta = try await bridge.waitForMetadata()
+            let meta = try await bridge.waitForMetadata(expecting: videoId)
             guard gen == generation else { return }   // 취소됨
             detectedProfile = Self.detectProfile(title: meta.title)
             pendingDuration = meta.duration

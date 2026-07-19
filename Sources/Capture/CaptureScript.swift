@@ -18,12 +18,14 @@ enum CaptureScript {
           ".ytp-skip-ad-button, .ytp-ad-skip-button, .ytp-ad-skip-button-modern");
         if (b) b.click();
       }
-      async function waitMeta(timeoutMs) {
+      // 내비게이션 커밋 전엔 이전 페이지에서 실행되므로 기대 영상 href 확인 필수 (최종 리뷰 Critical 2)
+      async function waitMeta(timeoutMs, expectId) {
         const t0 = Date.now();
         while (Date.now() - t0 < timeoutMs) {
           if (adShowing()) { trySkipAd(); await sleep(300); continue; }
           const v = video();
-          if (v && v.readyState >= 1 && isFinite(v.duration) && v.duration > 0) {
+          if (v && v.readyState >= 1 && isFinite(v.duration) && v.duration > 0
+              && (!expectId || location.href.indexOf(expectId) !== -1)) {
             return { duration: Math.floor(v.duration), title: document.title };
           }
           await sleep(200);

@@ -78,4 +78,21 @@ struct AppModelTests {
         }
         #expect(message.contains("유튜브"))
     }
+
+    @Test func startInvalidatesInFlightFlowState() async throws {
+        let root = FileManager.default.temporaryDirectory
+            .appendingPathComponent("clipnote-appmodel-\(UUID().uuidString)")
+        defer { try? FileManager.default.removeItem(at: root) }
+        let model = makeModel(root: root)
+        let fixture = try Bundle.fixtureData("analyze-response")
+        let envelope = try JSONDecoder().decode(AnalyzeEnvelope.self, from: fixture)
+        model.pendingResult = AnalyzeResult(videoId: envelope.videoId,
+                                            analysis: envelope.analysis, rawAnalysis: fixture)
+        model.captures = [GuideCapture(guide: envelope.analysis.visualGuides[0], candidates: [])]
+
+        await model.start(urlString: "not-a-youtube-url")   // 유효성 실패해도 무효화는 선행돼야 한다
+
+        #expect(model.captures.isEmpty)
+        #expect(model.pendingResult == nil)
+    }
 }

@@ -71,6 +71,7 @@ struct HomeView: View {
         .onAppear(perform: refresh)
         .onChange(of: model.stage) { _, newStage in
             if case .loadingPlayer = newStage { flowActive = true }   // E2E·공유 진입 자동 표시
+            if case .failed = newStage { flowActive = true }   // 진입 전 실패(키 미설정 공유 등)도 에러+재시도 화면으로 (최종 리뷰 Important 3)
             if case .done = newStage { documents = model.documents() }
         }
     }

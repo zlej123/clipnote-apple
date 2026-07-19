@@ -71,15 +71,18 @@ final class PlayerBridge: NSObject, ObservableObject {
         }
     }
 
-    func waitForMetadata(timeout: TimeInterval = 20) async throws -> (duration: Int, title: String) {
+    func waitForMetadata(expecting videoID: String? = nil,
+                         timeout: TimeInterval = 20) async throws -> (duration: Int, title: String) {
         // 런타임 강제 어댑테이션(iOS 시뮬레이터 실측): 유튜브 첫 로드는 재내비게이션을 거치며
         // 그 사이 주입 스크립트(atDocumentEnd)가 아직 없거나 사라진다 — 장기 waitMeta 한 방 호출은
         // "undefined is not an object" TypeError로 깨졌다. 짧은 waitMeta 호출을 데드라인까지 반복한다.
         let deadline = Date().addingTimeInterval(timeout)
+        // expectId: videoID는 유튜브 ID 형식([\w-]{11})이라 JS 문자열 인젝션 불가 — 따옴표로만 감싼다.
+        let expectId = videoID.map { "\"\($0)\"" } ?? "null"
         while Date() < deadline {
             try Task.checkCancellation()
             let result = try? await callJS(
-                "if (!window.__clipnote) { return null; } return JSON.stringify(await window.__clipnote.waitMeta(1500));",
+                "if (!window.__clipnote) { return null; } return JSON.stringify(await window.__clipnote.waitMeta(1500, \(expectId)));",
                 timeout: 5)
             if let json = result,
                let dict = try? JSONSerialization.jsonObject(with: Data(json.utf8)) as? [String: Any],

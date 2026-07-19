@@ -30,7 +30,7 @@ final class SpikeRunner: ObservableObject {
             try await Task.sleep(for: .seconds(3))
             Self.log("메타데이터 대기 시작")
             // 타임아웃 90초: 스킵 불가 광고(56~137초 실측)가 본편 메타데이터를 지연시킬 수 있다.
-            let meta = try await bridge.waitForMetadata(timeout: 90)
+            let meta = try await bridge.waitForMetadata(expecting: Self.videoID, timeout: 90)
             Self.log("메타데이터 획득: \(meta.duration)s — prime 시작")
             status = "메타데이터: \(meta.duration)s — 프레임 디코딩 유도"
             try await bridge.primePlayer()

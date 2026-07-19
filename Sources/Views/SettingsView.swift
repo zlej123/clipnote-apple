@@ -6,6 +6,7 @@ struct SettingsView: View {
     @AppStorage(Settings.linkModeKey) private var linkMode = false
     @State private var geminiKey = ""
     @State private var keySavedAt: Date?
+    @State private var keySaveError: String?
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -15,14 +16,24 @@ struct SettingsView: View {
                     SecureField("AI Studio에서 발급한 키", text: $geminiKey)
                         .textFieldStyle(.roundedBorder)
                     Button("키 저장") {
-                        try? KeychainStore.geminiKey.save(
-                            geminiKey.trimmingCharacters(in: .whitespacesAndNewlines))
-                        keySavedAt = Date()
+                        do {
+                            try KeychainStore.geminiKey.save(
+                                geminiKey.trimmingCharacters(in: .whitespacesAndNewlines))
+                            keySaveError = nil
+                            keySavedAt = Date()
+                        } catch {
+                            keySavedAt = nil
+                            keySaveError = "저장 실패 — 다시 시도해 주세요"
+                        }
                     }
                     .disabled(geminiKey.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                     if keySavedAt != nil {
                         Label("저장됨", systemImage: "checkmark.circle.fill")
                             .foregroundStyle(.green).font(.callout)
+                    }
+                    if let keySaveError {
+                        Label(keySaveError, systemImage: "exclamationmark.triangle.fill")
+                            .foregroundStyle(.red).font(.callout)
                     }
                     Link("AI Studio에서 무료 키 발급 (카드 불필요)",
                          destination: URL(string: "https://aistudio.google.com/apikey")!)
