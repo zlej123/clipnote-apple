@@ -5,6 +5,7 @@ enum Settings {
     static let serverURLKey = "serverURL"
     static let languageKey = "language"
     static let linkModeKey = "linkMode"
+    static let notionParentPageKey = "notionParentPage"
 
     static let defaultServerURL = "http://127.0.0.1:8787"
     static let defaultLanguage = "ko"

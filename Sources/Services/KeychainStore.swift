@@ -8,6 +8,7 @@ struct KeychainStore: Sendable {
     var account: String = "default"
 
     static let geminiKey = KeychainStore(service: "clipnote.gemini-key")
+    static let notionToken = KeychainStore(service: "clipnote.notion-token")
 
     struct UnexpectedStatus: Error, Equatable { let status: OSStatus }
 
