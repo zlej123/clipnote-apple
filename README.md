@@ -6,7 +6,7 @@
 완성된 문서는 공유시트·폴더 저장 외에 Notion 페이지로도 직접 내보낼 수 있다(사용자 통합 토큰).
 
 [clipnote](https://github.com/zlej123/clipnote) 생태계의 Apple 클라이언트 —
-분석은 [clipnote-server](https://github.com/zlej123/clipnote-server)(BYOK, 사용자 Gemini 키),
+분석은 기본적으로 앱이 Gemini를 직접 호출(BYOK)하며, [clipnote-server](https://github.com/zlej123/clipnote-server)는 선택(개발·프롬프트 반복·신고 수집기 호스팅),
 캡처는 앱의 WKWebView(영상 다운로드 없음), 문서 조립은 로컬(skill-core 템플릿 + 코어 렌더러 포팅).
 
 ## 개발
@@ -35,3 +35,4 @@
 - 설계: `docs/superpowers/specs/2026-07-17-clipnote-apple-v1-design.md`
 - 캡처 스파이크 기록: `docs/spike-capture.md`
 - 수동 테스트: `docs/TESTING.md`
+- 신고 수집기 배포: `../clipnote-server/docs/deploy.md`
