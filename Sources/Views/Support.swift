@@ -59,3 +59,17 @@ enum ExportHelper {
         }
     }
 }
+
+/// 키 미설정 배너의 시선 유도 배경 — 부드러운 주황 펄스. "동작 줄이기" 설정 시 정적 강조 (온보딩 폴리시).
+struct KeyNudgeBackground: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var pulsing = false
+
+    var body: some View {
+        Color.orange.opacity(reduceMotion ? 0.18 : (pulsing ? 0.28 : 0.10))
+            .animation(reduceMotion ? nil
+                       : .easeInOut(duration: 1.2).repeatForever(autoreverses: true),
+                       value: pulsing)
+            .onAppear { pulsing = true }
+    }
+}

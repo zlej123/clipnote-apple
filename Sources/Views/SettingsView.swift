@@ -39,9 +39,33 @@ struct SettingsView: View {
                         Label(keySaveError, systemImage: "exclamationmark.triangle.fill")
                             .foregroundStyle(.red).font(.callout)
                     }
-                    Link("AI Studio에서 무료 키 발급 (카드 불필요)",
-                         destination: URL(string: "https://aistudio.google.com/apikey")!)
+                    if geminiKey.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                        HStack(spacing: 8) {
+                            Link(destination: URL(string: "https://aistudio.google.com/apikey")!) {
+                                Label("AI Studio에서 무료 키 발급", systemImage: "arrow.up.right")
+                            }
+                            .buttonStyle(.borderedProminent)
+                            Text("← 여기를 눌러 1분 발급")
+                                .font(.caption)
+                                .foregroundStyle(.orange)
+                        }
+                        DisclosureGroup("키 발급 방법 보기") {
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("1. 구글 계정으로 aistudio.google.com/apikey 접속")
+                                Text("2. \"API 키 만들기(Create API key)\" 클릭")
+                                Text("3. 생성된 키 복사 (AIza로 시작)")
+                                Text("4. 위 칸에 붙여넣고 '키 저장' — 무료, 카드 등록 불필요")
+                            }
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .padding(.top, 4)
+                        }
                         .font(.callout)
+                    } else {
+                        Link("AI Studio에서 무료 키 발급 (카드 불필요)",
+                             destination: URL(string: "https://aistudio.google.com/apikey")!)
+                            .font(.callout)
+                    }
                 } header: { Text("Gemini API 키") } footer: {
                     Text("키는 이 기기의 Keychain에만 저장되고 분석 요청에만 사용됩니다.")
                 }

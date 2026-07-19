@@ -16,8 +16,10 @@ struct HomeView: View {
                         showSettings = true
                     } label: {
                         Label("먼저 설정에서 Gemini API 키를 입력하세요", systemImage: "key.fill")
+                            .symbolEffect(.pulse, options: .repeating)
                     }
                     .foregroundStyle(.orange)
+                    .listRowBackground(KeyNudgeBackground())
                 }
             }
             Section("새 문서") {
