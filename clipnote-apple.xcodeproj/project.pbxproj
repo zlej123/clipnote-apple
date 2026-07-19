@@ -13,6 +13,7 @@
 		12C374CA4EDF047E499924C5 /* StubURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EECDAFCEF36C3490F13970 /* StubURLProtocol.swift */; };
 		135D0BE366E1B9376F0C4D10 /* skill-core in Resources */ = {isa = PBXBuildFile; fileRef = 086E183F0701CE008CB3614E /* skill-core */; };
 		179A2A6579E244A3E00F6783 /* KeychainStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1005F4C611062AAA77ECDEEE /* KeychainStoreTests.swift */; };
+		1C85AA021951D0CA31F34894 /* ReportCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD32AE82F0D997DB47951F6F /* ReportCollector.swift */; };
 		23C6649CAE779F414FBCC05A /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF47733217E898BADAED894 /* Support.swift */; };
 		24955C28DB6ED6FCF52C829E /* TestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2E252968509799BB54D5ED /* TestBundle.swift */; };
 		25B6A500536A8B66C8FC0570 /* YouTubeURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B65C52C1E88D7F735C6E0 /* YouTubeURLTests.swift */; };
@@ -43,6 +44,7 @@
 		7964969B970062E7A0A94E2D /* YouTubeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A890E9DC0157F018709067 /* YouTubeURL.swift */; };
 		7AC948FF15C57B6DEDA6C27A /* NotionPageID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5C20A9BA66575DBCC66A67 /* NotionPageID.swift */; };
 		7B5BB2F263CBE79E6E74AAF4 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C53CA9270B06BE86C9EF3D0 /* KeychainStore.swift */; };
+		7DE7F2828AC7C994DA55BB9E /* ReportCollectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA798ADE9BCE59A81652C398 /* ReportCollectorTests.swift */; };
 		827402093F5BA32ACD7E668F /* NotionPageIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFC864ADAC47D29A940439 /* NotionPageIDTests.swift */; };
 		86F6833E9BE61FD69D542D97 /* ClipnoteAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A46F54889DC7794BFD06B8 /* ClipnoteAPITests.swift */; };
 		9B62AFE5AE59A2423BF212A6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC7C06E40745B83B2ABD5B /* Settings.swift */; };
@@ -148,6 +150,7 @@
 		A4E278FA85B2D40271C69E4F /* NotionBlockBuilderGoldenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionBlockBuilderGoldenTests.swift; sourceTree = "<group>"; };
 		A582DCBA84994547250330F9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B0785357617101FBE2328D1B /* ClipnoteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteAPI.swift; sourceTree = "<group>"; };
+		BD32AE82F0D997DB47951F6F /* ReportCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCollector.swift; sourceTree = "<group>"; };
 		BFFA10C56D0780CFAD9FC1E3 /* NotionBlockBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionBlockBuilder.swift; sourceTree = "<group>"; };
 		C1A801FF4295DCF414932918 /* CapturePipelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePipelineTests.swift; sourceTree = "<group>"; };
 		CBF47733217E898BADAED894 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
@@ -159,6 +162,7 @@
 		E1FBEE3BE432EBB96724485F /* NotionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionAPI.swift; sourceTree = "<group>"; };
 		E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTests.swift; sourceTree = "<group>"; };
 		E95074CB2F387CE12D43E8DA /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
+		EA798ADE9BCE59A81652C398 /* ReportCollectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCollectorTests.swift; sourceTree = "<group>"; };
 		EF1BDBF762D2D5BD14E61A04 /* ClipnoteShare.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ClipnoteShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F78FA600AC9089972CD6951F /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,6 +252,7 @@
 				95A9058A08C2CB93E411284E /* CandidateTimes.swift */,
 				1B5E131AC524F1DD0F9D4F44 /* IssueReport.swift */,
 				5B5C20A9BA66575DBCC66A67 /* NotionPageID.swift */,
+				BD32AE82F0D997DB47951F6F /* ReportCollector.swift */,
 				02A890E9DC0157F018709067 /* YouTubeURL.swift */,
 			);
 			path = Models;
@@ -283,6 +288,7 @@
 				A3F182CF3140CCA95E06D47E /* NotionExporterTests.swift */,
 				7FF1A6FB0A839B89FEB9254D /* NotionExportTrackerTests.swift */,
 				4AAFC864ADAC47D29A940439 /* NotionPageIDTests.swift */,
+				EA798ADE9BCE59A81652C398 /* ReportCollectorTests.swift */,
 				E95074CB2F387CE12D43E8DA /* SettingsTests.swift */,
 				5903F609B4D280036CDE8BB5 /* ShareInboxTests.swift */,
 				25EECDAFCEF36C3490F13970 /* StubURLProtocol.swift */,
@@ -458,6 +464,7 @@
 				7AC948FF15C57B6DEDA6C27A /* NotionPageID.swift in Sources */,
 				DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */,
 				58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */,
+				1C85AA021951D0CA31F34894 /* ReportCollector.swift in Sources */,
 				4FBD255AE895C39714CF10CA /* ReportSheet.swift in Sources */,
 				9B62AFE5AE59A2423BF212A6 /* Settings.swift in Sources */,
 				6971DA3494084729BACD0C58 /* SettingsView.swift in Sources */,
@@ -488,6 +495,7 @@
 				5A67E0C5D6031C39C929420E /* NotionExportTrackerTests.swift in Sources */,
 				36F1810B03F0FDA6D7F8B9F8 /* NotionExporterTests.swift in Sources */,
 				827402093F5BA32ACD7E668F /* NotionPageIDTests.swift in Sources */,
+				7DE7F2828AC7C994DA55BB9E /* ReportCollectorTests.swift in Sources */,
 				A3FDDC1878A6753D910679CD /* SettingsTests.swift in Sources */,
 				763938967BEBD5D24E9533CC /* ShareInboxTests.swift in Sources */,
 				12C374CA4EDF047E499924C5 /* StubURLProtocol.swift in Sources */,

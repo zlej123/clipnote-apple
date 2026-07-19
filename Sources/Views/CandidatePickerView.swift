@@ -5,6 +5,7 @@ struct CandidatePickerView: View {
     @Bindable var model: AppModel
     @State private var picks: [String: String] = [:]
     @State private var reporting = false
+    @State private var reportNotice: String?
 
     var body: some View {
         ScrollView {
@@ -20,12 +21,21 @@ struct CandidatePickerView: View {
                 .buttonStyle(.borderedProminent)
                 .frame(maxWidth: .infinity)
                 Button {
-                    reporting = true
+                    if ReportCollector.resolveURL() == nil {
+                        reportNotice = "신고 수집 서버가 설정되지 않았습니다 — 설정에서 입력하거나 앱 업데이트를 기다려 주세요"
+                    } else {
+                        reportNotice = nil
+                        reporting = true
+                    }
                 } label: {
                     Label("후보가 이상해요", systemImage: "flag")
                 }
                 .font(.callout)
                 .frame(maxWidth: .infinity)
+                if let reportNotice {
+                    Text(reportNotice).font(.caption).foregroundStyle(.orange)
+                        .frame(maxWidth: .infinity)
+                }
             }
             .padding(.vertical)
         }

@@ -238,9 +238,8 @@ final class AppModel {
     func submitIssueReport(reason: ReportReason, note: String,
                            picks: [String: String]) async -> String? {
         guard let result = pendingResult else { return "신고할 분석 정보가 없습니다" }
-        guard let serverURL = URL(string: defaults.string(forKey: Settings.serverURLKey)
-                                  ?? Settings.defaultServerURL) else {
-            return "서버 URL이 올바르지 않습니다 — 설정을 확인하세요"
+        guard let serverURL = ReportCollector.resolveURL(defaults: defaults) else {
+            return "신고 수집 서버가 설정되지 않았습니다 — 설정에서 입력하거나 앱 업데이트를 기다려 주세요"
         }
         let report = IssueReport(
             url: "https://m.youtube.com/watch?v=\(result.videoId)",

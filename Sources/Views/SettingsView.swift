@@ -4,6 +4,7 @@ struct SettingsView: View {
     @AppStorage(Settings.serverURLKey) private var serverURL = Settings.defaultServerURL
     @AppStorage(Settings.languageKey) private var language = Settings.defaultLanguage
     @AppStorage(Settings.linkModeKey) private var linkMode = false
+    @AppStorage(Settings.reportServerURLKey) private var reportServerURL = ""
     @State private var geminiKey = ""
     @State private var keySavedAt: Date?
     @State private var keySaveError: String?
@@ -85,6 +86,13 @@ struct SettingsView: View {
                         .autocorrectionDisabled()
                 } header: { Text("clipnote 서버 (선택)") } footer: {
                     Text("비워두면 서버 없이 Gemini를 직접 호출합니다(기본). 개발용 서버를 쓰려면 URL 입력 — 실기기에서는 Mac의 LAN IP (예: http://192.168.0.10:8787)")
+                }
+                Section {
+                    TextField("신고 수집 서버 URL", text: $reportServerURL)
+                        .textFieldStyle(.roundedBorder)
+                        .autocorrectionDisabled()
+                } header: { Text("이상 신고 (선택)") } footer: {
+                    Text("비워두면 분석 서버로 보냅니다. 일반 배포판에는 기본 수집기가 내장됩니다.")
                 }
                 Section {
                     SecureField("Notion 통합 토큰", text: $notionToken)

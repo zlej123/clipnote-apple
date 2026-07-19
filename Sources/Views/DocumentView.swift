@@ -63,7 +63,11 @@ struct DocumentView: View {
                 }
                 .disabled(exportingNotion)
                 Button {
-                    reporting = true
+                    if ReportCollector.resolveURL() == nil {
+                        exportMessage = "신고 수집 서버가 설정되지 않았습니다 — 설정에서 입력하거나 앱 업데이트를 기다려 주세요"
+                    } else {
+                        reporting = true
+                    }
                 } label: {
                     Label("문서가 이상해요", systemImage: "flag")
                 }
@@ -152,9 +156,8 @@ struct DocumentView: View {
     }
 
     private func submitReport(reason: ReportReason, note: String) async -> String? {
-        guard let serverURL = URL(string: UserDefaults.standard.string(forKey: Settings.serverURLKey)
-                                  ?? Settings.defaultServerURL) else {
-            return "서버 URL이 올바르지 않습니다 — 설정을 확인하세요"
+        guard let serverURL = ReportCollector.resolveURL() else {
+            return "신고 수집 서버가 설정되지 않았습니다 — 설정에서 입력하거나 앱 업데이트를 기다려 주세요"
         }
         guard let raw = try? Data(contentsOf:
             document.folder.appendingPathComponent("analysis.json")) else {

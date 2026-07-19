@@ -6,6 +6,7 @@ enum Settings {
     static let languageKey = "language"
     static let linkModeKey = "linkMode"
     static let notionParentPageKey = "notionParentPage"
+    static let reportServerURLKey = "reportServerURL"
 
     /// v1.3: 빈 값 = 서버 없이 Gemini 직접 호출(일반 사용자 기본). 개발 서버는 URL 입력.
     static let defaultServerURL = ""
