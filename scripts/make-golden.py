@@ -11,8 +11,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CORE = Path(os.environ.get("CLIPNOTE_PATH", ROOT.parent / "clipnote")).resolve()
-sys.path.insert(0, str(CORE))
-import render as core_render  # noqa: E402
+sys.path.insert(0, str(CORE / "src"))
+from clipnote import render as core_render  # noqa: E402
 
 golden_root = ROOT / "Tests" / "Fixtures" / "golden"
 for case_dir in sorted(p for p in golden_root.iterdir() if p.is_dir()):
