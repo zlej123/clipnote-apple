@@ -52,8 +52,12 @@ struct AnalyzeFlowView: View {
         case .done(let meta):
             VStack(spacing: 10) {
                 Label("완료", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
-                NavigationLink("문서 보기", value: meta.id)
-                    .buttonStyle(.borderedProminent)
+                // value 기반 링크는 이 뷰가 isPresented로 푸시된 브랜치라 루트 List의
+                // String 목적지 등록을 못 봐서 활성화되지 않는다 → 목적지 직접 지정으로 우회
+                if let document = model.document(id: meta.id) {
+                    NavigationLink("문서 보기") { DocumentView(document: document) }
+                        .buttonStyle(.borderedProminent)
+                }
             }
         case .failed(let message):
             VStack(spacing: 10) {
