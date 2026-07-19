@@ -1,0 +1,160 @@
+[
+  {
+    "type": "paragraph",
+    "paragraph": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "간단한 김치볶음 레시피."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "paragraph",
+    "paragraph": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "YouTube 원본",
+            "link": {
+              "url": "https://youtu.be/4ioPBiTWm3M"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "준비물"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "돼지고기 300g"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김치 1/2포기"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "순서"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "numbered_list_item",
+    "numbered_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "고기 볶기 — 달군 팬에 고기를 볶는다."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "quote",
+    "quote": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "💡 '한입 크기' 기준: 3~4cm 큐브 크기."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "paragraph",
+    "paragraph": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "▶ 영상 0:15에서 직접 확인",
+            "link": {
+              "url": "https://youtu.be/4ioPBiTWm3M?t=15"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "numbered_list_item",
+    "numbered_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김치 넣고 졸이기 — 김치를 넣고 자작해질 때까지 졸인다."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "quote",
+    "quote": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "💡 '자작해짐' 기준: 바닥에 국물이 거의 없고 양념이 코팅된 상태."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "image",
+    "image": {
+      "type": "file_upload",
+      "file_upload": {
+        "id": "fake-vg-2"
+      }
+    }
+  }
+]

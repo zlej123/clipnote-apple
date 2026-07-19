@@ -1,0 +1,26 @@
+import Testing
+import Foundation
+@testable import clipnote
+
+struct NotionBlockBuilderGoldenTests {
+    @Test(arguments: ["generic-mixed", "generic-links-only", "recipe-mixed"])
+    func matchesCoreBlocks(caseName: String) throws {
+        let sub = "Fixtures/golden/\(caseName)"
+        let analysis = try JSONDecoder().decode(
+            Analysis.self, from: Bundle.fixtureData("analysis", subdirectory: sub))
+        let golden = try JSONDecoder().decode(
+            MarkdownBuilderGoldenTests.GoldenCase.self,
+            from: Bundle.fixtureData("case", subdirectory: sub))
+        let expected = try JSONSerialization.jsonObject(
+            with: Bundle.fixtureData("expected-notion", subdirectory: sub)) as! NSArray
+
+        let imageIds = Dictionary(uniqueKeysWithValues:
+            golden.imageRefs.keys.map { ($0, "fake-\($0)") })
+        let produced = NotionBlockBuilder.blocks(
+            analysis: analysis, videoId: golden.videoId, imageUploadIds: imageIds)
+        // Swift 딕셔너리 → JSON 왕복 후 NSArray 동등 비교 (키 순서 무관, 값·구조 단위)
+        let roundTripped = try JSONSerialization.jsonObject(
+            with: JSONSerialization.data(withJSONObject: produced)) as! NSArray
+        #expect(roundTripped == expected)
+    }
+}

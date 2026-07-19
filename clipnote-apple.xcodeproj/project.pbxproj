@@ -21,6 +21,7 @@
 		55D4CADEB5AF68EACA8F3363 /* ClipnoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EF3AD9B2B7205C47CCDF8 /* ClipnoteApp.swift */; };
 		58C2E2C5F997DC2422820D2B /* YouTubeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A890E9DC0157F018709067 /* YouTubeURL.swift */; };
 		58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20924CC388A5A71A968C279B /* PlayerWebView.swift */; };
+		6011C1BFACD3602B65871E4C /* NotionBlockBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA10C56D0780CFAD9FC1E3 /* NotionBlockBuilder.swift */; };
 		60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */; };
 		63A73CFB7E75AEFCD159375E /* CandidatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF3886533D746433E25B83 /* CandidatePickerView.swift */; };
 		6971DA3494084729BACD0C58 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582DCBA84994547250330F9 /* SettingsView.swift */; };
@@ -48,6 +49,7 @@
 		DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63428D6C8CFA774A9F628412 /* PlayerBridge.swift */; };
 		E3AC82813D79937D94143C3C /* ClipnoteShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EF1BDBF762D2D5BD14E61A04 /* ClipnoteShare.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E64E7CB20C1E29F76275F638 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566341E0C576E91DCB9F6D80 /* AppModel.swift */; };
+		E66040DE1B47A827360800DE /* NotionBlockBuilderGoldenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E278FA85B2D40271C69E4F /* NotionBlockBuilderGoldenTests.swift */; };
 		ECA478199E0D15C7C24874DF /* CapturePipelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A801FF4295DCF414932918 /* CapturePipelineTests.swift */; };
 		F0927E072FF2FD35AC566BAD /* AnalysisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */; };
 /* End PBXBuildFile section */
@@ -120,8 +122,10 @@
 		9ABBD420677B02D93F6AC1F9 /* Clipnote-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Clipnote-iOS.entitlements"; sourceTree = "<group>"; };
 		9D6A6A896A1900F05F68DAF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStoreTests.swift; sourceTree = "<group>"; };
+		A4E278FA85B2D40271C69E4F /* NotionBlockBuilderGoldenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionBlockBuilderGoldenTests.swift; sourceTree = "<group>"; };
 		A582DCBA84994547250330F9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B0785357617101FBE2328D1B /* ClipnoteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteAPI.swift; sourceTree = "<group>"; };
+		BFFA10C56D0780CFAD9FC1E3 /* NotionBlockBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionBlockBuilder.swift; sourceTree = "<group>"; };
 		C1A801FF4295DCF414932918 /* CapturePipelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePipelineTests.swift; sourceTree = "<group>"; };
 		CBF47733217E898BADAED894 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		D4189D5DBCF03DF2C37B74CA /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 				1C53CA9270B06BE86C9EF3D0 /* KeychainStore.swift */,
 				E1E331A550C1529F607C7A2E /* MarkdownBuilder.swift */,
 				3656C1A46AF2A2255D46BA1B /* MustacheLite.swift */,
+				BFFA10C56D0780CFAD9FC1E3 /* NotionBlockBuilder.swift */,
 				7EAC7C06E40745B83B2ABD5B /* Settings.swift */,
 			);
 			path = Services;
@@ -241,6 +246,7 @@
 				1005F4C611062AAA77ECDEEE /* KeychainStoreTests.swift */,
 				D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */,
 				1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */,
+				A4E278FA85B2D40271C69E4F /* NotionBlockBuilderGoldenTests.swift */,
 				4AAFC864ADAC47D29A940439 /* NotionPageIDTests.swift */,
 				E95074CB2F387CE12D43E8DA /* SettingsTests.swift */,
 				5903F609B4D280036CDE8BB5 /* ShareInboxTests.swift */,
@@ -407,6 +413,7 @@
 				7B5BB2F263CBE79E6E74AAF4 /* KeychainStore.swift in Sources */,
 				093FC8CF548AF0FC0D104685 /* MarkdownBuilder.swift in Sources */,
 				B048E7331E8BB4ACF80A470F /* MustacheLite.swift in Sources */,
+				6011C1BFACD3602B65871E4C /* NotionBlockBuilder.swift in Sources */,
 				7AC948FF15C57B6DEDA6C27A /* NotionPageID.swift in Sources */,
 				DD49C47A23680E24A0F6C8C0 /* PlayerBridge.swift in Sources */,
 				58CFCCA945901B46C42D14E1 /* PlayerWebView.swift in Sources */,
@@ -432,6 +439,7 @@
 				179A2A6579E244A3E00F6783 /* KeychainStoreTests.swift in Sources */,
 				60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */,
 				2EF122CBA49C1B36CB19F374 /* MustacheLiteTests.swift in Sources */,
+				E66040DE1B47A827360800DE /* NotionBlockBuilderGoldenTests.swift in Sources */,
 				827402093F5BA32ACD7E668F /* NotionPageIDTests.swift in Sources */,
 				A3FDDC1878A6753D910679CD /* SettingsTests.swift in Sources */,
 				763938967BEBD5D24E9533CC /* ShareInboxTests.swift in Sources */,
