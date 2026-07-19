@@ -16,6 +16,7 @@
 		23C6649CAE779F414FBCC05A /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF47733217E898BADAED894 /* Support.swift */; };
 		24955C28DB6ED6FCF52C829E /* TestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2E252968509799BB54D5ED /* TestBundle.swift */; };
 		25B6A500536A8B66C8FC0570 /* YouTubeURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B65C52C1E88D7F735C6E0 /* YouTubeURLTests.swift */; };
+		2A76088CC3BA6C3053BB073E /* GeminiAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1790DAECFEA3D37ACF4246D6 /* GeminiAPITests.swift */; };
 		2EF122CBA49C1B36CB19F374 /* MustacheLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */; };
 		30DC30B5CFE165D9DDA89017 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 3D29DA080058AC8289743384 /* Fixtures */; };
 		36F1810B03F0FDA6D7F8B9F8 /* NotionExporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F182CF3140CCA95E06D47E /* NotionExporterTests.swift */; };
@@ -35,6 +36,8 @@
 		6C580F3FE81ECC56D479A8B7 /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4189D5DBCF03DF2C37B74CA /* AppModelTests.swift */; };
 		70A5D8FB3F7FE9B4FCBD1984 /* CandidateTimesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */; };
 		73BC5151FDDA4ECF48BDA83C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F537FF3C92D7F959A828FD0 /* HomeView.swift */; };
+		7442B4965556D903E4F433EC /* AnalysisNormalizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB473AE27F6CE253B93B5A4 /* AnalysisNormalizerTests.swift */; };
+		744B3E44A8FE27507D9EE596 /* AnalysisNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF263CADCCA9C19818FA64D /* AnalysisNormalizer.swift */; };
 		75D14BA22DA228CF3A4CBBA1 /* CandidateTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A9058A08C2CB93E411284E /* CandidateTimes.swift */; };
 		763938967BEBD5D24E9533CC /* ShareInboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5903F609B4D280036CDE8BB5 /* ShareInboxTests.swift */; };
 		7964969B970062E7A0A94E2D /* YouTubeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A890E9DC0157F018709067 /* YouTubeURL.swift */; };
@@ -49,6 +52,7 @@
 		B9CDC77070A7808B89E95A16 /* DocumentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B1E238A13D8A9884F801DC /* DocumentStore.swift */; };
 		BBB3B01E75059040AB8D5D0E /* AnalyzeFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF4E4D457ECB0DEAD6EB7C /* AnalyzeFlowView.swift */; };
 		BF49CC80F86A52B3F773CF24 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D02F2EB91181BAE3E0F996D /* DocumentView.swift */; };
+		C503B6A6EA0E703D0467D742 /* GeminiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A481F01C1CF83B9FAC3410BA /* GeminiAPI.swift */; };
 		C913FFEA8546D0AE11798C44 /* NotionAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C24FFFD364DDD8A8A6526D9 /* NotionAPITests.swift */; };
 		C92445F9BDBA7A3DE72BC97B /* DocumentStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */; };
 		CB00BD738D93A55FEF1B4EC4 /* SpikeCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CA802247D1A52D9CB7E9CB /* SpikeCaptureView.swift */; };
@@ -98,7 +102,9 @@
 		02DF4E4D457ECB0DEAD6EB7C /* AnalyzeFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeFlowView.swift; sourceTree = "<group>"; };
 		086E183F0701CE008CB3614E /* skill-core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "skill-core"; path = "Resources/skill-core"; sourceTree = SOURCE_ROOT; };
 		0897DD5AB26F38AC3E819D09 /* ReportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSheet.swift; sourceTree = "<group>"; };
+		0CB473AE27F6CE253B93B5A4 /* AnalysisNormalizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisNormalizerTests.swift; sourceTree = "<group>"; };
 		1005F4C611062AAA77ECDEEE /* KeychainStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStoreTests.swift; sourceTree = "<group>"; };
+		1790DAECFEA3D37ACF4246D6 /* GeminiAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiAPITests.swift; sourceTree = "<group>"; };
 		1B5E131AC524F1DD0F9D4F44 /* IssueReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueReport.swift; sourceTree = "<group>"; };
 		1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MustacheLiteTests.swift; sourceTree = "<group>"; };
 		1C24FFFD364DDD8A8A6526D9 /* NotionAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionAPITests.swift; sourceTree = "<group>"; };
@@ -135,8 +141,10 @@
 		99048B61EEFA2BFFC865C74E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9ABBD420677B02D93F6AC1F9 /* Clipnote-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Clipnote-iOS.entitlements"; sourceTree = "<group>"; };
 		9D6A6A896A1900F05F68DAF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9DF263CADCCA9C19818FA64D /* AnalysisNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisNormalizer.swift; sourceTree = "<group>"; };
 		9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStoreTests.swift; sourceTree = "<group>"; };
 		A3F182CF3140CCA95E06D47E /* NotionExporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionExporterTests.swift; sourceTree = "<group>"; };
+		A481F01C1CF83B9FAC3410BA /* GeminiAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiAPI.swift; sourceTree = "<group>"; };
 		A4E278FA85B2D40271C69E4F /* NotionBlockBuilderGoldenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionBlockBuilderGoldenTests.swift; sourceTree = "<group>"; };
 		A582DCBA84994547250330F9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B0785357617101FBE2328D1B /* ClipnoteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipnoteAPI.swift; sourceTree = "<group>"; };
@@ -218,8 +226,10 @@
 		9A499F66C73384DCFF0B9638 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				9DF263CADCCA9C19818FA64D /* AnalysisNormalizer.swift */,
 				B0785357617101FBE2328D1B /* ClipnoteAPI.swift */,
 				67B1E238A13D8A9884F801DC /* DocumentStore.swift */,
+				A481F01C1CF83B9FAC3410BA /* GeminiAPI.swift */,
 				1C53CA9270B06BE86C9EF3D0 /* KeychainStore.swift */,
 				E1E331A550C1529F607C7A2E /* MarkdownBuilder.swift */,
 				3656C1A46AF2A2255D46BA1B /* MustacheLite.swift */,
@@ -256,6 +266,7 @@
 		D1457F13C695A38B36BF42F0 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				0CB473AE27F6CE253B93B5A4 /* AnalysisNormalizerTests.swift */,
 				E5F3B2D4944356124B26AD73 /* AnalysisTests.swift */,
 				D4189D5DBCF03DF2C37B74CA /* AppModelTests.swift */,
 				59E46F4ACF5BF43CB5AD38C5 /* CandidateTimesTests.swift */,
@@ -263,6 +274,7 @@
 				78A46F54889DC7794BFD06B8 /* ClipnoteAPITests.swift */,
 				9EADDF25F82E762D7756AD48 /* DocumentStoreTests.swift */,
 				3D29DA080058AC8289743384 /* Fixtures */,
+				1790DAECFEA3D37ACF4246D6 /* GeminiAPITests.swift */,
 				1005F4C611062AAA77ECDEEE /* KeychainStoreTests.swift */,
 				D6FDD1EC2B34EB3972563122 /* MarkdownBuilderGoldenTests.swift */,
 				1B6E537FA711C74FA2DF1ECA /* MustacheLiteTests.swift */,
@@ -423,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B3BE03D253C461CBED7F56F /* Analysis.swift in Sources */,
+				744B3E44A8FE27507D9EE596 /* AnalysisNormalizer.swift in Sources */,
 				BBB3B01E75059040AB8D5D0E /* AnalyzeFlowView.swift in Sources */,
 				E64E7CB20C1E29F76275F638 /* AppModel.swift in Sources */,
 				63A73CFB7E75AEFCD159375E /* CandidatePickerView.swift in Sources */,
@@ -433,6 +446,7 @@
 				03DA969F16C9BF943BC40F41 /* ContentView.swift in Sources */,
 				B9CDC77070A7808B89E95A16 /* DocumentStore.swift in Sources */,
 				BF49CC80F86A52B3F773CF24 /* DocumentView.swift in Sources */,
+				C503B6A6EA0E703D0467D742 /* GeminiAPI.swift in Sources */,
 				73BC5151FDDA4ECF48BDA83C /* HomeView.swift in Sources */,
 				5A958E6638DFEE06CACB89B8 /* IssueReport.swift in Sources */,
 				7B5BB2F263CBE79E6E74AAF4 /* KeychainStore.swift in Sources */,
@@ -458,12 +472,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7442B4965556D903E4F433EC /* AnalysisNormalizerTests.swift in Sources */,
 				F0927E072FF2FD35AC566BAD /* AnalysisTests.swift in Sources */,
 				6C580F3FE81ECC56D479A8B7 /* AppModelTests.swift in Sources */,
 				70A5D8FB3F7FE9B4FCBD1984 /* CandidateTimesTests.swift in Sources */,
 				ECA478199E0D15C7C24874DF /* CapturePipelineTests.swift in Sources */,
 				86F6833E9BE61FD69D542D97 /* ClipnoteAPITests.swift in Sources */,
 				C92445F9BDBA7A3DE72BC97B /* DocumentStoreTests.swift in Sources */,
+				2A76088CC3BA6C3053BB073E /* GeminiAPITests.swift in Sources */,
 				179A2A6579E244A3E00F6783 /* KeychainStoreTests.swift in Sources */,
 				60E83AB1C8EAE63F7907FD29 /* MarkdownBuilderGoldenTests.swift in Sources */,
 				2EF122CBA49C1B36CB19F374 /* MustacheLiteTests.swift in Sources */,

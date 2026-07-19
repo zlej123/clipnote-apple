@@ -1,10 +1,15 @@
 #!/bin/bash
-# skill-core 템플릿을 앱 리소스로 복사 (원본: ../clipnote). 코어 템플릿 갱신 시 재실행 후 골든 재생성.
+# skill-core 자산(템플릿·프롬프트·스키마·규칙)을 앱 리소스로 복사 (원본: ../clipnote).
+# 코어 갱신 시 재실행 후 make-golden.py / make-notion-golden.py 재생성.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-SRC="${CLIPNOTE_PATH:-../clipnote}/src/clipnote/skill-core/profiles"
+SRC="${CLIPNOTE_PATH:-../clipnote}/src/clipnote/skill-core"
 for p in generic recipe; do
   mkdir -p "Resources/skill-core/$p"
-  cp "$SRC/$p/template.md" "Resources/skill-core/$p/template.md"
+  cp "$SRC/profiles/$p/template.md" "Resources/skill-core/$p/template.md"
+  cp "$SRC/profiles/$p/prompt.md"   "Resources/skill-core/$p/prompt.md"
+  cp "$SRC/profiles/$p/schema.json" "Resources/skill-core/$p/schema.json"
 done
-echo "synced templates from $SRC"
+mkdir -p "Resources/skill-core/engine"
+cp "$SRC/engine/rules.md" "Resources/skill-core/engine/rules.md"
+echo "synced skill-core assets from $SRC"

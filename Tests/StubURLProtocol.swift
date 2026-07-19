@@ -87,3 +87,8 @@ final class NotionExporterStub: StubURLProtocolBase {
     nonisolated(unsafe) static let shared = StubStorage()
     override class var storage: StubStorage { shared }
 }
+
+final class GeminiAPIStub: StubURLProtocolBase {
+    nonisolated(unsafe) static let shared = StubStorage()
+    override class var storage: StubStorage { shared }
+}
