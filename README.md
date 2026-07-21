@@ -18,7 +18,10 @@
 
     # 테스트 (CLI, xcode-select가 CLT면 DEVELOPER_DIR 지정)
     export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
-    xcodebuild -project clipnote-apple.xcodeproj -scheme Clipnote -destination 'platform=macOS' test
+    xcodebuild -project clipnote-apple.xcodeproj -scheme Clipnote \
+      -destination 'platform=iOS Simulator,name=iPhone 17 Pro' test
+    # macOS destination은 ad-hoc 서명 탓에 키체인 승인 프롬프트로 테스트 러너가 멈출 수 있다 →
+    # 테스트는 iOS 시뮬레이터, macOS는 `build`로만 확인
 
     # E2E (스텁 서버 — Gemini 키 불필요)
     ./scripts/e2e-m1.sh              # 링크 모드
@@ -26,13 +29,13 @@
 
 ## 스크립트
 - `scripts/stub-server.py` — /v1/analyze 스텁 (fixture 응답)
-- `scripts/sync-assets.sh` — ../clipnote skill-core 템플릿 재복사 (갱신 시 make-golden.py 재실행)
+- `scripts/sync-assets.sh` — ../clipnote skill-core 자산(템플릿·프롬프트·스키마·규칙) 재복사 (직접 Gemini 모드가 프롬프트/스키마를 사용; 갱신 시 골든 재생성)
 - `scripts/make-golden.py` — 코어 render.py로 골든 기대 출력 재생성
 - `scripts/make-notion-golden.py` — 코어 build_notion_blocks로 Notion 블록 골든 재생성
 - `scripts/spike-verify.sh` — M0 캡처 검증
 
 ## 문서
-- 설계: `docs/superpowers/specs/2026-07-17-clipnote-apple-v1-design.md`
+- 설계 스펙: `docs/superpowers/specs/` (v1 · Notion 내보내기 · 온보딩 · 원탭 신고 · 서버리스)
 - 캡처 스파이크 기록: `docs/spike-capture.md`
 - 수동 테스트: `docs/TESTING.md`
 - 신고 수집기 배포: `../clipnote-server/docs/deploy.md`
