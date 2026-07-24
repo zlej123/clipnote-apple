@@ -238,9 +238,6 @@ final class AppModel {
     func submitIssueReport(reason: ReportReason, note: String,
                            picks: [String: String]) async -> String? {
         guard let result = pendingResult else { return "신고할 분석 정보가 없습니다" }
-        guard let serverURL = ReportCollector.resolveURL(defaults: defaults) else {
-            return "신고 수집 서버가 설정되지 않았습니다 — 설정에서 입력하거나 앱 업데이트를 기다려 주세요"
-        }
         let report = IssueReport(
             url: "https://m.youtube.com/watch?v=\(result.videoId)",
             videoId: result.videoId, reason: reason, note: note,
@@ -248,6 +245,11 @@ final class AppModel {
             language: result.analysis.outputLanguage
                 ?? defaults.string(forKey: Settings.languageKey) ?? Settings.defaultLanguage,
             rawAnalysis: result.rawAnalysis, picks: picks, client: IssueReport.clientTag)
+        // 수집기가 없으면 메일 앱으로 폴백 — 배포 전에도 신고 경로가 살아 있게
+        guard let serverURL = ReportCollector.resolveURL(defaults: defaults) else {
+            return ReportMailer.compose(report) ? nil
+                : "메일 앱을 열지 못했습니다 — 신고 내용을 클립보드에 복사했습니다"
+        }
         do {
             try await makeAPI(serverURL).submitReport(report)
             return nil

@@ -48,7 +48,10 @@ struct ReportSheet: View {
                             .foregroundStyle(.red).font(.callout)
                     }
                 } footer: {
-                    Text("영상 주소와 분석 결과, 선택 내역이 내 서버로 전송됩니다.")
+                    // 수집기 설정 여부에 따라 실제 동작이 달라지므로 고지 문구도 그에 맞춘다
+                    Text(ReportCollector.resolveURL() == nil
+                         ? "메일 앱이 열리고, 영상 주소와 사유·메모가 미리 채워집니다. 보내기 전에 내용을 확인할 수 있습니다."
+                         : "영상 주소와 분석 결과, 선택 내역이 개발자 서버로 전송됩니다.")
                 }
             }
             .formStyle(.grouped)

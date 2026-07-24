@@ -21,12 +21,9 @@ struct CandidatePickerView: View {
                 .buttonStyle(.borderedProminent)
                 .frame(maxWidth: .infinity)
                 Button {
-                    if ReportCollector.resolveURL() == nil {
-                        reportNotice = "신고 수집 서버가 설정되지 않았습니다 — 설정에서 입력하거나 앱 업데이트를 기다려 주세요"
-                    } else {
-                        reportNotice = nil
-                        reporting = true
-                    }
+                    // 수집기가 없어도 시트를 연다 — 보내기 시 메일 앱으로 폴백
+                    reportNotice = nil
+                    reporting = true
                 } label: {
                     Label("후보가 이상해요", systemImage: "flag")
                 }

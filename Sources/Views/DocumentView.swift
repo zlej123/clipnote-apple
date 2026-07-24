@@ -63,11 +63,8 @@ struct DocumentView: View {
                 }
                 .disabled(exportingNotion)
                 Button {
-                    if ReportCollector.resolveURL() == nil {
-                        exportMessage = "신고 수집 서버가 설정되지 않았습니다 — 설정에서 입력하거나 앱 업데이트를 기다려 주세요"
-                    } else {
-                        reporting = true
-                    }
+                    // 수집기가 없어도 시트를 연다 — 보내기 시 메일 앱으로 폴백
+                    reporting = true
                 } label: {
                     Label("문서가 이상해요", systemImage: "flag")
                 }
@@ -156,9 +153,6 @@ struct DocumentView: View {
     }
 
     private func submitReport(reason: ReportReason, note: String) async -> String? {
-        guard let serverURL = ReportCollector.resolveURL() else {
-            return "신고 수집 서버가 설정되지 않았습니다 — 설정에서 입력하거나 앱 업데이트를 기다려 주세요"
-        }
         guard let raw = try? Data(contentsOf:
             document.folder.appendingPathComponent("analysis.json")) else {
             return "분석 원본을 읽지 못했습니다"
@@ -168,6 +162,11 @@ struct DocumentView: View {
             videoId: document.meta.videoId, reason: reason, note: note,
             profile: document.meta.profile, language: document.meta.language,
             rawAnalysis: raw, picks: document.picks, client: IssueReport.clientTag)
+        // 수집기가 없으면 메일 앱으로 폴백
+        guard let serverURL = ReportCollector.resolveURL() else {
+            return ReportMailer.compose(report) ? nil
+                : "메일 앱을 열지 못했습니다 — 신고 내용을 클립보드에 복사했습니다"
+        }
         do {
             try await ClipnoteAPI(baseURL: serverURL).submitReport(report)
             return nil
